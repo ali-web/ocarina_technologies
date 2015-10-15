@@ -1,11 +1,51 @@
-<b>October 1st:</b> Brainstormed project ideas – 1 hour
-
-<b>October 5th:</b> Discussed project ideas and agreed on one – 1 hour
-
-<b>October 8th:</b> Discussed further details of the project. Changed project idea – 1 hour 
-
-<b>October 9th:</b> Created outline for written proposal – 1 hour
-
-<b>October 11th:</b> Finished PowerPoint presentation and discussed written proposal – 2.5 hours
-
-<b>October 12th:</b> Worked on assigned sections for written proposal – 2 hours
+<table style="width:100%">
+  <tr>
+    <th><b>Date</b></th>
+    <th><b>Task</b></th>		
+    <th><b>Time Spent</b></th>
+  </tr>
+  
+  <tr>
+    <td>October 1st</td>
+    <td>Brainstormed project ideas</td> 
+    <td>1 hour</td>
+  </tr>
+  
+  <tr>
+    <td>October 4th</td>
+    <td>Researched and brainstormed ideas, wrote ideas in Google doc</td> 
+    <td>1 hour</td>
+  </tr>
+  
+  <tr>
+    <td>October 5th</td>
+    <td>Discussed project ideas as a group and agreed on one</td>
+    <td>1 hour</td>
+  </tr>
+  
+  <tr>
+    <td>October 8th</td>
+    <td>Discussed further details of the project and decided to change project idea</td>
+    <td>1 hour</td>
+  </tr>
+  
+  <tr>
+    <td>October 9th</td>
+    <td> Created outline for written proposal</td>
+    <td>1 hour</td>
+  </tr>
+  
+  <tr>
+    <td>October 11th</td>
+    <td>Met up as a group and finished PowerPoint presentation and discussed written proposal</td>
+    <td>2.5 hours</td>
+  </tr>
+  
+  <tr>
+    <td>October 12th</td>
+    <td>Worked on assigned sections for written proposal</td>
+    <td>2 hours</td>
+  </tr>
+  
+  
+</table>
