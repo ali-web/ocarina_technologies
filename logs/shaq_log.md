@@ -8,3 +8,4 @@
 | October 10th | 1 hour |	Preparing presentation slides	|
 | October 11th | 2 hours |	Finalize presentation slides & converse with team on proposal |
 | October 13th | 1 hour |	Work on assigned proposal section	|
+| October 15th | 4 hours | Finalize proposal. Team discussion on moving forward. Implement a working Random Title Generator |
