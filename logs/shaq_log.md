@@ -1,5 +1,5 @@
 | Date | Hours | Task |
-|:-----|-------|-----:|
+|:-----|-------|:-----|
 | September 24th | 1 hour |	Brainstorm project ideas with team/meet-up, create google doc to add different ideas |
 | September 25th | 1 hour |	Add a few ideas to the google docs |
 | October 1st | 1 hour | Discuss project with team |
