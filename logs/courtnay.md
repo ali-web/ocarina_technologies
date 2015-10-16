@@ -49,8 +49,20 @@
   
   <tr>
     <td>10/14/15</td>
-    <td></td>
-    <td></td>
+    <td>Finished up assigned sections for proposal</td>
+    <td>1 hour</td>
+  </tr>
+  
+  <tr>
+  <td>10/15/15</td>
+  <td>Met up as a group to go over proposal and finished up final details. Discussed prototypes and moving forward in the project. Formatted the written proposal</td>
+  <td>3.5 hours</td>
+  </tr>
+  
+  <tr>
+  <td>10/16/15</td>
+  <td></td>
+  <td></tD>
   </tr>
   
   
