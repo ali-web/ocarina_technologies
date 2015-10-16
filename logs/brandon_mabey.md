@@ -6,6 +6,8 @@
 | October 8             | 1.5 hours (4PM-5:30PM)| Group meeting to discuss changing to *Story Time* application|
 | October 10            | 2 hours (10PM-12PM)   | Researched applications similar to *Story Time*, and found research papers relating to those applications. Added relvent date to proposal slides|
 | October 11            | 3 hours (2PM-5PM)     | Group meeting to work on proposal slides. Distributed work for written report, and practiced slide presentation.|
+| October 15            | 3 hours (1PM-4PM)     | Created Gantt chart and wrote down milestones for inital proposal.|
+| October 15            | 3.5 hours (4PM-:306PM)| Group meeting to work on written project proposal.|
 |                       |                       |                            |
 | _Total_               | _10 hours_            |                            |
 
