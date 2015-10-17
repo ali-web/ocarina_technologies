@@ -55,14 +55,20 @@
   
   <tr>
   <td>10/15/15</td>
-  <td>Met up as a group to go over proposal and finished up final details. Discussed prototypes and moving forward in the project. Formatted the written proposal</td>
+  <td>Met up as a group to go over proposal and finished up final details. Discussed prototypes and moving forward in the project. Set up word document for proposal.</td>
   <td>3.5 hours</td>
   </tr>
   
   <tr>
   <td>10/16/15</td>
+  <td>Finished formatting and editing proposal, made final copy into pdf.</td>
+  <td>1 hour</tD>
+  </tr>
+  
+  <tr>
+  <td>10/17/15</td>
   <td></td>
-  <td></tD>
+  <td></td>
   </tr>
   
   
