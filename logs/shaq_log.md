@@ -9,3 +9,4 @@
 | October 11th | 2 hours |	Finalize presentation slides & converse with team on proposal |
 | October 13th | 1 hour |	Work on assigned proposal section	|
 | October 15th | 4 hours | Finalize proposal. Team discussion on moving forward. Implement a working Random Title Generator. Define development tools |
+| October 18th | 4 hours | Create prototype of game to be used for testing in proto.io |
