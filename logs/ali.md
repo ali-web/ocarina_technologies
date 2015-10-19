@@ -1,7 +1,7 @@
 | Date                  | Hours Spent             | Tasks |
 |-----------------------|-------------------------|----------------------------|
-| Sep 21          | 2 hours (7PM-9PM)       | Creating slack group, google calendar, google docs and writing about what we are going to do as well as scheduling first meeting |
-| Sep 24          | 1 hour (4PM-5PM)        | Weekly meeting, talking about our skills, the tools we are going to use, scheduling for further meetings and coordination, brainstorming for project idea |
+| Sep 21            | 2 hours (7PM-9PM)       | Creating slack group, google calendar, google docs and writing about what we are going to do as well as scheduling first meeting |
+| Sep 24            | 1 hour (4PM-5PM)        | Weekly meeting, talking about our skills, the tools we are going to use, scheduling for further meetings and coordination, brainstorming for project idea |
 | Oct 1             | 1.5 hours (4PM-5:30PM)  | Weekly meeting, continue brainstorming and discussing our previous ideas |
 | Oct 5             | 1 hour (4PM-5PM)        | Casual meeting, deciding on **Decision Maker** application, elaborating and writing our ideas about it |
 | Oct 8             | 1.5 hours (4PM-5:30PM)  | Weekly meeting, deciding to change project idea to **Story Time**, elaborating this idea|
