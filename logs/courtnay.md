@@ -67,8 +67,8 @@
   
   <tr>
   <td>10/17/15</td>
-  <td></td>
-  <td></td>
+  <td>Worked on ethics application</td>
+  <td>2.5 hours</td>
   </tr>
   
   
