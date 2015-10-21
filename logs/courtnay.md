@@ -67,8 +67,20 @@
   
   <tr>
   <td>10/17/15</td>
-  <td>Worked on ethics application</td>
+  <td>Had a group meeting and worked on ethics application.</td>
   <td>2.5 hours</td>
+  </tr>
+  
+  <tr>
+  <td>10/19/15</td>
+  <td>Worked on ethics application.</td>
+  <td>1 hour</td>
+  </tr>
+  
+  <tr>
+  <td>10/20/15</td>
+  <td>Completed consent form.</td>
+  <td>1 hour</td>
   </tr>
   
   
