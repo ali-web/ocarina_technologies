@@ -83,7 +83,11 @@
   <td>1 hour</td>
   </tr>
   
-  
+  <tr>
+  <td>10/22/15</td>
+  <td>Group meeting to discuss upcoming prototype testing sessions. Did practice runs through prototype and interview questions to approximately determine how long it will be for participants.</td>
+  <td>1.5 hours</td>
+  </tr>
   
   
   
