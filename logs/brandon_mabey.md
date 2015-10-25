@@ -9,6 +9,8 @@
 | October 15            | 3 hours (1PM-4PM)     | Created Gantt chart and wrote down milestones for inital proposal.|
 | October 15            | 3.5 hours (4PM-6:30PM)| Group meeting to work on written project proposal.|
 | October 18            | 3.5 hours (11AM-2:30PM)| Group meeting to work on eithics application form. |
+| October 22            | 2 hours (4PM-6PM)     | Group meeting to determine and practice interview process. |
+| October 25            | 3 hours (11AM - 2PM)  | Group meeting to further practice interview process, as well as determine admistrative details of the procedure of order of the various interview parts. Edited HREA ethics application and consent form to allow for the voice recording of interviews. |
 |                       |                       |                            |
-| _Total_               | _20 hours_            |                            |
+| _Total_               | _25 hours_            |                            |
 
