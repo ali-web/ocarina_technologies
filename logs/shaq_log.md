@@ -11,4 +11,4 @@
 | October 15th | 4 hours | Finalize proposal. Team discussion on moving forward. Implement a working Random Title Generator. Define development tools |
 | October 18th | 4 hours | Create prototype of game to be used for testing in proto.io |
 | October 20th | 3 hours | Tried fixing bug in prototype - no successful. Had to re-do. Made questions for interview during prototype testing |
-| October 23rd | 2 hours | Discuss how to do the user testing. Did practice interview. Dicuss timings. |
+| October 22nd | 2 hours | Discuss how to do the user testing. Did practice interview. Dicuss timings. |
