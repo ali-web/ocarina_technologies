@@ -89,7 +89,17 @@
   <td>1.5 hours</td>
   </tr>
   
+  <tr>
+  <td>10/25/15</td>
+  <td>Group meeting: review feedback from Peggy, discuss plan for testing sessions, review interview questions, and practice interview. </td>
+  <td>3 hours</td>
+  </tr>
   
+  <tr>
+  <td>10/26/15</td>
+  <td></td>
+  <td></td>
+  </tr>
   
   
   
