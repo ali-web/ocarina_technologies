@@ -1,0 +1,1 @@
+The logs in this folder are no longer being updated, and instead a single combined log book on Google Sheets is being maintained. This spreadsheet is avalible at: https://docs.google.com/spreadsheets/d/1d6nzNs8t1Nz_9IFajTCJ3ilahHv8Fyy2NQNgOzbcK_o/edit?usp=sharing
