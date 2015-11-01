@@ -18,6 +18,6 @@ class StoryTime{
 
     static function URIGenerator()
     {
-
+        return chr( mt_rand( 97 ,122 ) ) .substr( md5( time( ) ) ,1, 10 );
     }
 }
