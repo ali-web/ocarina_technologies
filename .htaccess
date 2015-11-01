@@ -1,0 +1,9 @@
+RewriteEngine on
+RewriteRule ^(.*)\.[\d]{10}\.(css|js)$ $1.$2 [L]
+
+
+RewriteEngine on
+
+RewriteCond %{SCRIPT_FILENAME}  !-f
+
+RewriteRule .* /index1.php
