@@ -1,5 +1,6 @@
 ##Background
-* Provide a link to the “original” StoryTime game that we are basing our app on. (Sociables/Kings Cup? Or check out the improv game “one-word-at-a-time”, it’s pretty much the same idea). 
+* Provide a link to the “original” StoryTime game that we are basing our app on. (Sociables/Kings Cup? Or check out the improv game “one-word-at-a-time”, it’s pretty much the same idea).
+* Motivation and relate this to CSCW
 * Mention any games that we found that involve a group of people “contributing”.
 * Reference papers that discuss research with collaborative games. 
 * Reference papers to CSCW in general.
