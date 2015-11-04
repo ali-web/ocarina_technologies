@@ -18,7 +18,6 @@ Background
 * Ensure that our milestones match the descriptions of the work that we’ve been doing.
 * Go into more detail for our milestones (it was too high level).
 
-
 Introduction
 Need to mention distributed cognition. Peggy mentioned how this is important for this project and it relates to CSCW.
 "Developed by Edwin Hutchins, distributed cognition is the theory that knowledge lies not only within the individual but in the individual's social and physical environment."
