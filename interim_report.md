@@ -1,4 +1,4 @@
-Background
+Bground
 
 Introduction
 Need to mention distributed cognition. Peggy mentioned how this is important for this project and it relates to CSCW.
