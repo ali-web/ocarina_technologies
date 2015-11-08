@@ -43,8 +43,23 @@ Next Sentence: https://nextsentence.ca/
 A forum with people playing this game in a similar way. Next person has to have one word more than the previous persons': http://clashofclans.wikia.com/wiki/Thread:264026
 Prototyping tool: https://proto.io/
 
+##Progress so far/Milestones met: *appendix 
 
-##Milestones *this goes in the appendix
+**Written proposal (Oct.16):** Completed written proposal that describes what our project is about and the work that we will be doing this term. 
+
+**Ethics application (Oct.19):** Ethics application and consent forms created in order to conduct interviews and user testing. 
+
+**Finish prototype (Oct.23):** Finished creating two prototype versions of our game that will be tested by users. 
+
+**Run user testing sessions (Oct. 26 & Oct.29):** Conducted two user testing sessions that involved participants playing with the prototypes. Interviewed participants to receive feedback and 
+
+**Analyzing data from user testing (Oct.27):** Transcribed the recorded interviews to analyze the data. Determined from the data which prototype version of the game and features the participants liked. 
+
+**Finalize project requirements (Oct.30):** Discussed as a group what our project’s final requirements are and how we will be moving forward. 
+
+**Conceptual design (Nov.3):** Conceptual design completed in order to assist in the creation of our MVP. 
+
+##Milestones *appendix
 
 **Interim project report (Nov.13):** Complete interim report which describes our current work and the progress of the project. 
 
