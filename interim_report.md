@@ -28,8 +28,26 @@ Need to mention distributed cognition. Peggy mentioned how this is important for
 "Developed by Edwin Hutchins, distributed cognition is the theory that knowledge lies not only within the individual but in the individual's social and physical environment."
 The dependence of the theory on the social and physical environment of the individual makes it very useful in analyzing human-computer interactions and educational technologies.
 
-##Minimum Viable Product
-Since StoryTime is a project that is focused more on implementation rather than research, our team will be creating a Minimum Viable Product (MVP) in order to conduct further user testing. The MVP will take into consideration the information we gathered and analyzed from our first user testing on the prototypes discussed above. In order to assist in building the MVP, we have created a conceptual design and will use this to conduct a cognitive walkthroughs with each member in our team. This will allow us to easily realize any missing components in our game prior to the MVP implementation.
+##Background
+The StoryTime game being implemented as described by this paper is based on a modified version of a game often played in social friend groups, named "One Word At A Time" \cite{dramaresource, izzyg}. The game "One Word At A Time" is often played with 5 to 10 players as part as a improv exercise, and is also called "Word At a Time", "Sentence At a Time", or "Word At a Time Expert" \cite{learnimprov}.  Variations of the game support non-linear turn orders, changed player counts and full sentence at a time additions to the story. Sometimes the participants in this game, often called players, will act out the story as it is created. This often requires large coordination and non-verbal communication skills as part of the player group partaking the game.
+
+While the games main focus is the ability to improv group coordination across the players participating, games played at a professional level, with an often modified game rules can lend itself to audience entertainment. It has been shown to be popular forms of entertainment for non-participants to spectate, as seen on the TV show "Whose Line is it Anyway?", with games such as "Questions Only?" and "Questionable Impressions." \cite{whoseline}. The end result of either the professional spin-offs or amateur version often lead to stories with comedic results.
+
+Attempts at translating the "One Word At A Time" game to the digital space have created subpar solutions in the past. One solution created by would be players was to create a One Word At a Time subreddit, equivalent to a internet bulletin board or form on the site reddit.com, to recreate the game \cite{reddit}. This internet space has become unused after just 5 sessions of the game, due to the changes space in which the game resides in the time/space matrix first described by johansen created by the digital translation \cite{cscw-matrix}. That is, a change from "same place same time" to "different place different time". Other attempts by players, such as the Clash of Clans wikia forums have resulted in similar failures \cite{coc-wikia}.
+
+One unique property of the "One Word At A Time" game that makes it difficult to translate is that there is no win or lose condition enforced upon the players, and instead the ability to maintain the spotinaity and flow of the story becomes the goal of the exercise \cite{improv.ca}. This means that there is no predefined end point or goal for which the game is caused to finish, unlike most games \cite{learn-canvas, badge-ville, makeschool}.
+
+*TODO for Background / Related Work*:
+ - Add Related work
+ - - Note: nextsentence.ca is ghost town (no stories created in past week).
+ - - Need to find issues that caused that
+ - - Games from proposal slides
+ - Reorder paragraphs in background
+ - get additional + more reliable sources
+ - Get other digital attempts by players (CoC / /r/owaat).
+
+##Minimal Viable Product
+Since StoryTime is a project that is focused more on implementation rather than research, our team will be creating a Minimal Viable Product (MVP) in order to conduct further user testing. The MVP will take into consideration the information we gathered and analyzed from our first user testing on the prototypes discussed above. In order to assist in building the MVP, we have created a conceptual design and will use this to conduct a cognitive walkthroughs with each member in our team. This will allow us to easily realize any missing components in our game prior to the MVP implementation.
 
 The MVP will be implemented as a web application, which when finalized, we intend to release as a Facebook game application. The purpose of the MVP is to decide on the features we have discussed for StoryTime and to determine whether they will be implemented into the final product. The MVP will be designed in a way that allow players to be distributed on their own computers while playing the game. This will allow for a more realistic approach in the user testing, in comparison to the first prototype, which forced the players to pass around a single computer. It is important to note, however, that the implementation of our final product is not in the scope of this project. We will instead discuss what we found from our user testing of the MVP and provide thorough documentation on what we believe the final product will consist of and why.
 
@@ -37,15 +55,38 @@ The MVP will be implemented as a web application, which when finalized, we inten
 The conceptual design was planned out using an online, collaborative, diagramming tool called LucidChart. This tool makes it easy to create and share flowcharts, mockups, UML (Unified Modeling Language), mind maps and more.
 
 Although we stated above that the MVP will be implemented after the conceptual design, our team has built the necessary platform in order to start the implementation process. The following are the tools we are using that allow us to collaborate on coding this application:
-<ol>cPanel and phpMyAdmin to support the database that stores players stories and information</ol>
-<ol>GitHub allowing for version control and collaboration</ol>
-<ol>PhpStorm by Jetbrains as our coding environment</ol>
+<li>cPanel and phpMyAdmin to support the database that stores players stories and information</li>
+<li>GitHub allowing for version control and collaboration</li>
+<li>PhpStorm by Jetbrains as our coding environment</li>
 
 ##References
-<ol>Motivation for our game: http://dramaresource.com/drama-games/storytelling/one-word-at-a-time/</ol>
-<ol>A forum with people playing this game in a similar way. Next person has to have one word more than the previous persons': http://clashofclans.wikia.com/wiki/Thread:264026</ol>
-<ol>Next Sentence: https://nextsentence.ca/</ol>
-<ol>Prototyping tool: https://proto.io/</ol>
+Motivation for our game: http://dramaresource.com/drama-games/storytelling/one-word-at-a-time/
+Next Sentence: https://nextsentence.ca/
+A forum with people playing this game in a similar way. Next person has to have one word more than the previous persons': http://clashofclans.wikia.com/wiki/Thread:264026
+Prototyping tool: https://proto.io/
+
+dramaresource = http://dramaresource.com/drama-games/storytelling/one-word-at-a-time/ Accessed: Nov 8
+
+izzyg = http://www.izzyg.com/images/file/playingalong-oneword.pdf Accessed: Nov 8
+
+learnimprov = http://learnimprov.com/?p=328 Accessed: Nov 8
+
+imporv.ca = http://improv.ca/word-at-a-time-the-practice-game/ Accessed: Nov 8
+
+whoseline = http://www.whoseline.net/show/games.html Accessed: Nov 8
+
+reddit = https://www.reddit.com/r/owaat Accessed: Nov 8
+
+cscw-matrix = http://www.enolagaia.com/UMUArchive/CSCW.html Accessed: Nov 8
+
+learn-canvas = https://learn.canvas.net/courses/3/pages/level-3-dot-1-2-objectives-goals Accessed: Nov 8
+
+badge-ville = https://badgeville.com/wiki/Game_Design Accessed: Nov 8
+
+makeschool = https://www.makeschool.com/gamernews/298/5-basic-elements-of-game-design Accessed: Nov 8
+
+
+
 
 ##Progress so far/Milestones met: *appendix 
 
