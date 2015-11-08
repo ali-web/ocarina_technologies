@@ -1,3 +1,9 @@
+#### *ABSTRACT*
+Collaborative mechanisms are starting to become prominent in computer games, like massively multiplayer
+online games (MMOGs);\cite{CollaborativeGames}
+
+**Keywords**: computer supported collaborative work, collaborative games, game design, word games
+
 ##Background and Motivation
 * Provide a link to the “original” StoryTime game that we are basing our app on. (Sociables/Kings Cup? Or check out the improv game “one-word-at-a-time”, it’s pretty much the same idea).
 * Motivation and relate this to CSCW
@@ -58,6 +64,21 @@ Although we stated above that the MVP will be implemented after the conceptual d
 <ol>cPanel and phpMyAdmin to support the database that stores players stories and information</ol>
 <ol>GitHub allowing for version control and collaboration</ol>
 <ol>PhpStorm by Jetbrains as our coding environment</ol>
+
+###Findings
+our fidnings in this work
+
+###Discussion
+Discuss about findings
+
+###Limitations
+limitations in our research and design that we couldn't address properly and affected our results
+
+###Future Work
+What could be done in future to improve this work
+
+###Conclusion
+Final words
 
 ##References
 <ol> Motivation for our game: http://dramaresource.com/drama-games/storytelling/one-word-at-a-time/ </ol>
