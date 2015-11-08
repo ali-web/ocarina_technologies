@@ -42,4 +42,22 @@ Motivation for our game: http://dramaresource.com/drama-games/storytelling/one-w
 Next Sentence: https://nextsentence.ca/
 A forum with people playing this game in a similar way. Next person has to have one word more than the previous persons': http://clashofclans.wikia.com/wiki/Thread:264026
 Prototyping tool: https://proto.io/
- 
+
+
+##Milestones *this goes in the appendix
+
+**Interim project report (Nov.13):** Complete interim report which describes our current work and the progress of the project. 
+
+**Finalize MVP implementation (Nov.18):** The creation of a web application of the game will be completed.
+
+**Cognitive walkthrough of MVP implementation (Nov.19):** Each member of our team will conduct a cognitive walkthrough of the MVP to identify any usability issues. 
+
+**Fix problems found after cognitive walkthrough (Nov.20):** Using the data collected from the cognitive walkthrough, we will improve and fix any problems of our MVP. 
+
+**User testing (cooperative observation) of MVP followed by interviews (Nov.26):** Conduct our second round of user testing where participants will play the game using the MVP and be interviewed after.
+
+**Analyze and interpret interviews (Nov.27):** Using the data collected from the interviews, we will analyze and determine what the final product would have been like if we were doing the full implementation. 
+
+**Final presentation (Dec.2):** Present to the class the work that we have completed. 
+
+**Final report (Dec.5):** Final report describing in detail the work that we have done. 
