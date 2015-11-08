@@ -80,6 +80,9 @@ What could be done in future to improve this work
 ###Conclusion
 Final words
 
+####Acknowledgement
+We are extremely grateful to all the interview and survey participants who accompanied us in several steps and we special thanks for our insturctor and teaching assistant who seriously helped us in this work to be accompolished.
+
 ##References
 
 CollaborativeGames = Zagal, José P., Jochen Rick, and Idris Hsi. "Collaborative games: Lessons learned from board games." Simulation & Gaming 37, no. 1 (2006): 24-40.
