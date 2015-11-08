@@ -46,7 +46,7 @@ One unique property of the "One Word At A Time" game that makes it difficult to 
  - get additional + more reliable sources
  - Get other digital attempts by players (CoC / /r/owaat).
 
-##Minimal Viable Product
+##Minimum  Viable Product
 Since StoryTime is a project that is focused more on implementation rather than research, our team will be creating a Minimal Viable Product (MVP) in order to conduct further user testing. The MVP will take into consideration the information we gathered and analyzed from our first user testing on the prototypes discussed above. In order to assist in building the MVP, we have created a conceptual design and will use this to conduct a cognitive walkthroughs with each member in our team. This will allow us to easily realize any missing components in our game prior to the MVP implementation.
 
 The MVP will be implemented as a web application, which when finalized, we intend to release as a Facebook game application. The purpose of the MVP is to decide on the features we have discussed for StoryTime and to determine whether they will be implemented into the final product. The MVP will be designed in a way that allow players to be distributed on their own computers while playing the game. This will allow for a more realistic approach in the user testing, in comparison to the first prototype, which forced the players to pass around a single computer. It is important to note, however, that the implementation of our final product is not in the scope of this project. We will instead discuss what we found from our user testing of the MVP and provide thorough documentation on what we believe the final product will consist of and why.
@@ -55,15 +55,15 @@ The MVP will be implemented as a web application, which when finalized, we inten
 The conceptual design was planned out using an online, collaborative, diagramming tool called LucidChart. This tool makes it easy to create and share flowcharts, mockups, UML (Unified Modeling Language), mind maps and more.
 
 Although we stated above that the MVP will be implemented after the conceptual design, our team has built the necessary platform in order to start the implementation process. The following are the tools we are using that allow us to collaborate on coding this application:
-<li>cPanel and phpMyAdmin to support the database that stores players stories and information</li>
-<li>GitHub allowing for version control and collaboration</li>
-<li>PhpStorm by Jetbrains as our coding environment</li>
+<ol>cPanel and phpMyAdmin to support the database that stores players stories and information</ol>
+<ol>GitHub allowing for version control and collaboration</ol>
+<ol>PhpStorm by Jetbrains as our coding environment</ol>
 
 ##References
-Motivation for our game: http://dramaresource.com/drama-games/storytelling/one-word-at-a-time/
-Next Sentence: https://nextsentence.ca/
-A forum with people playing this game in a similar way. Next person has to have one word more than the previous persons': http://clashofclans.wikia.com/wiki/Thread:264026
-Prototyping tool: https://proto.io/
+<ol> Motivation for our game: http://dramaresource.com/drama-games/storytelling/one-word-at-a-time/ </ol>
+<oi>A forum with people playing this game in a similar way. Next person has to have one word more than the previous persons': http://clashofclans.wikia.com/wiki/Thread:264026 </ol>
+<ol>Next Sentence: https://nextsentence.ca/</ol>
+<ol>Prototyping tool: https://proto.io/</ol>
 
 dramaresource = http://dramaresource.com/drama-games/storytelling/one-word-at-a-time/ Accessed: Nov 8
 
