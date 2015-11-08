@@ -81,10 +81,8 @@ What could be done in future to improve this work
 Final words
 
 ##References
-<ol> Motivation for our game: http://dramaresource.com/drama-games/storytelling/one-word-at-a-time/ </ol>
-<ol>A forum with people playing this game in a similar way. Next person has to have one word more than the previous persons': http://clashofclans.wikia.com/wiki/Thread:264026 </ol>
-<ol>Next Sentence: https://nextsentence.ca/</ol>
-<ol>Prototyping tool: https://proto.io/</ol>
+
+CollaborativeGames = Zagal, José P., Jochen Rick, and Idris Hsi. "Collaborative games: Lessons learned from board games." Simulation & Gaming 37, no. 1 (2006): 24-40.
 
 dramaresource = http://dramaresource.com/drama-games/storytelling/one-word-at-a-time/ Accessed: Nov 8
 
@@ -105,6 +103,14 @@ learn-canvas = https://learn.canvas.net/courses/3/pages/level-3-dot-1-2-objectiv
 badge-ville = https://badgeville.com/wiki/Game_Design Accessed: Nov 8
 
 makeschool = https://www.makeschool.com/gamernews/298/5-basic-elements-of-game-design Accessed: Nov 8
+
+Motivation for our game: http://dramaresource.com/drama-games/storytelling/one-word-at-a-time/
+
+A forum with people playing this game in a similar way. Next person has to have one word more than the previous persons': http://clashofclans.wikia.com/wiki/Thread:264026
+
+Next Sentence: https://nextsentence.ca/
+
+Prototyping tool: https://proto.io/
 
 
 
