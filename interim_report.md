@@ -20,6 +20,10 @@
 * Go into more detail for our milestones (it was too high level).
 
 ##Introduction
+
+We are taking a game called Story Time and implementing it as a Facebook web application. Story Time is a mini-game, or rule, within the drinking game: Sociables. Which is played by assigning a rule to each value within a deck of cards. The cards are then spread out in a circle and each player takes turns picking a card. Once a card is chosen the rule that is applied to that card must be played out. The Story Time rule is as follows: starting with the player who drew the card, create a story one word at a time. For example, the first player might start the story with “Hello”, and the second player could continue the story with “world”, making the story so far, “Hello world” and so on. An added element to the Story Time rule that we will not be implementing, is the one in which the player must correctly recite the entire story thus far before they can add a word of their own, otherwise they must drink. Currently this game is played in a co-located setting synchronously and we want to change its time-space matrix and make it possible for people to play it remotely and asynchronously with the help of technology.
+
+
 Need to mention distributed cognition. Peggy mentioned how this is important for this project and it relates to CSCW.
 "Developed by Edwin Hutchins, distributed cognition is the theory that knowledge lies not only within the individual but in the individual's social and physical environment."
 The dependence of the theory on the social and physical environment of the individual makes it very useful in analyzing human-computer interactions and educational technologies.
