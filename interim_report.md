@@ -61,7 +61,7 @@ Although we stated above that the MVP will be implemented after the conceptual d
 
 ##References
 <ol> Motivation for our game: http://dramaresource.com/drama-games/storytelling/one-word-at-a-time/ </ol>
-<oi>A forum with people playing this game in a similar way. Next person has to have one word more than the previous persons': http://clashofclans.wikia.com/wiki/Thread:264026 </ol>
+<ol>A forum with people playing this game in a similar way. Next person has to have one word more than the previous persons': http://clashofclans.wikia.com/wiki/Thread:264026 </ol>
 <ol>Next Sentence: https://nextsentence.ca/</ol>
 <ol>Prototyping tool: https://proto.io/</ol>
 
