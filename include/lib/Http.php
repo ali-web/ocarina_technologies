@@ -22,4 +22,15 @@ class Http {
 
         load_template('footer');
     }
+    
+    static function getRequest($url, $data = array()) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url . '?' . http_build_query($data)); 
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($ch); 
+
+        curl_close($ch);
+        
+        return $output;
+    }
 }
