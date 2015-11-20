@@ -15,10 +15,10 @@
         </div>  
         
         <ul id="navbar">
-            <li class="page"><a href=".." class="plinks">Home</a></li>
-            <li class="page"><a href="friends" class="plinks">Friends</a></li>
-            <li class="page"><a href="settings" class="plinks">Settings</a></li>
-            <li class="page"><a href="help" class="plinks">Help</a></li>
+            <li class="page"><a href="../.." class="plinks">Home</a></li>
+            <li class="page"><a href="../friends" class="plinks">Friends</a></li>
+            <li class="page"><a href="../settings" class="plinks">Settings</a></li>
+            <li class="page"><a href="../help" class="plinks">Help</a></li>
         </ul>
         
         <h2>Randomly Generated Title</h2>
