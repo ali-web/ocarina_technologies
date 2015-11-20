@@ -7,7 +7,10 @@ require_once ST_INCLUDE_DIR . 'functions.php';
 require_once ST_LIB_DIR     . 'Http.php';
 require_once ST_LIB_DIR     . 'StoryTime.php';
 require_once ST_INCLUDE_DIR . 'ST_Controller.php';
+require_once ST_INCLUDE_DIR . 'ST_Model.php';
 //require_once ST_INCLUDE_DIR . 'auth.php';
+
+session_start();
 
 function st_handler(){
     $uri = $_SERVER['REQUEST_URI'];
@@ -64,3 +67,5 @@ function request_handler()
 }
 
 st_handler();
+
+session_destroy();

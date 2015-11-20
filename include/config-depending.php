@@ -5,6 +5,7 @@
 $cloud9User = getenv("C9_USER");
 $fbClientId = getenv("FB_CLIENT_ID");
 $fbSecretId = getenv("FB_SECRET_ID");
+$fbAccessToken = getenv("FB_ACCESS_TOKEN");
 
 if ($cloud9User) {
     define('ST_MYSQL_HOSTNAME', getenv('IP'));
@@ -26,5 +27,6 @@ define('ST_APP_STATUS', 'developing'); // possible values: developing , deployed
 define('ST_UNDER_MAINTENANCE', 0); // if 1, site will not be displayed
 define('ST_FB_CLIENT_ID', $fbClientId);
 define('ST_FB_SECRET_ID', $fbSecretId);
+define('ST_FB_ACCESS_TOKEN', $fbAccessToken);
 
 define('ST_BASE_DOMAIN', 'localhost:8888');
