@@ -8,7 +8,7 @@
     
     <body>
         <div id="header">
-            <h1>StoryTime with Friends</h1>
+            <h1>StoryTime with Friends | <?= $name ?></h1>
             <a href="" id="notifications">Notifications</a>
         </div>           
     
