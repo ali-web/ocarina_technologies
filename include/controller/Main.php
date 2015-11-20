@@ -8,11 +8,11 @@
 
 class Main extends ST_Controller{
 
-    function index(){
+    function index() {
         $stories = $this->db->rawQuery("SELECT * FROM story WHERE ended_at is null");
 
-        load_template('header', array('title' => 'home'));
-        load_view('home', array('stories' => $stories));
+        //load_template('header', array('title' => 'home'));
+        load_view('Home', array('stories' => $stories));
         load_template('footer');
     }
 
@@ -32,10 +32,41 @@ class Main extends ST_Controller{
         if (!$id){
             echo $this->db->getLastError();
         } else {
-            Http::redirect('/Main/story/' . $uri);
+            //Http::redirect('/Main/story/' . $uri);
+            Http::redirect('/Main/CreateStory');
         }
     }
-
+    
+    function createStory() {
+        //include '../view/CreateStory.php';
+        load_view('CreateStory');
+    }
+    
+    function friends() {
+        load_view('Friends');
+    }
+    
+    function settings() {
+        load_view('Settings');
+    }
+    
+    function help() {
+        load_view('Help');
+    }
+    
+    function gamePlay($uri) {
+        $uri_array = array("uri" => $uri);
+        load_view('GamePlay', $uri_array);
+    }
+    
+    function waitTurn() {
+        load_view('WaitTurn');
+    }
+    
+    function completedStories() {
+        load_view('CompletedStories');
+    }
+    
     function story($uri)
     {
         $phrase = g('phrase');
