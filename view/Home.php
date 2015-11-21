@@ -2,13 +2,14 @@
 <html>
     <head>
         <title>StoryTime with Friends</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/common.css"></link>
         <link rel="stylesheet" type="text/css" href="/static/css/main.css">
         <script src="http://use.edgefonts.net/indie-flower:n4:all.js"></script>
     </head>
     
     <body>
         <div id="header">
-            <h1>StoryTime with Friends | <?= $name ?></h1>
+            <h1>StoryTime with Friends</h1>
             <a href="" id="notifications">Notifications</a>
         </div>           
     

@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Friends</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/common.css"></link>
         <link rel="stylesheet" type="text/css" href="/static/css/friends.css">
         <script src="http://use.edgefonts.net/indie-flower:n4:all.js"></script>
     </head>
