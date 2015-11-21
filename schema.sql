@@ -42,6 +42,25 @@ CREATE TABLE `story` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `story_user`
+--
+
+DROP TABLE IF EXISTS `story_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `story_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `FK_user_id` int(11) unsigned NOT NULL,
+  `FK_story_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_user_id` (`FK_user_id`),
+  KEY `FK_story_id` (`FK_story_id`),
+  CONSTRAINT `story_user_ibfk_2` FOREIGN KEY (`FK_story_id`) REFERENCES `story` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `story_user_ibfk_1` FOREIGN KEY (`FK_user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `user`
 --
 
@@ -52,9 +71,10 @@ CREATE TABLE `user` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `fb_id` varchar(20) NOT NULL COMMENT 'facebook currently stores these as a 64bit unsigned int',
   `access_token` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `fb_id` (`fb_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -66,4 +86,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-19 23:16:13
+-- Dump completed on 2015-11-21  0:48:01
