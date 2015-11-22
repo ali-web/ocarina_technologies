@@ -11,7 +11,7 @@ if ($cloud9User) {
 } else {
     define('ST_MYSQL_HOSTNAME', 'localhost');
     define('ST_MYSQL_USERNAME', 'root');
-    define('ST_MYSQL_PASSWORD', 'rootfdsf');
+    define('ST_MYSQL_PASSWORD', 'root');
     define('ST_MYSQL_DATABASE', 'ST');
 }
 

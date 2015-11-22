@@ -1,10 +1,11 @@
-body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,
+/*body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,
 address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,var,b,
 i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,
 tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,
 footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{
     margin:0;padding:0;border:0;outline:0;vertical-align:baseline;background:transparent
-}
+}*/
+/** @ali commented this reset to avoid conflicts with framework used by @sarah */
 body{
 }
 
@@ -50,4 +51,155 @@ ul li{
 
 #nav-main li{
     float: left;
+}
+
+
+
+
+/** From main.css by @sarah */
+body {
+    background-color: #696969;
+}
+
+#header {
+    background-color: #34137c;
+    padding-top: 20px;
+    padding-bottom: 1px;
+    border-bottom: 20px solid #2bc7bb;
+    margin-left: -10px;
+    margin-top: -10px;
+    margin-right: -10px;
+}
+
+h1 {
+    font-size: 50px;
+    color: #dcddcd;
+    font-family: "indie-flower",  sans-serif;
+    padding-left: 200px;
+    width: 800px;
+}
+
+#notifications {
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 25px;
+    border: 2px solid #2bc7bb;
+    color: #dcddcd;
+    display: block;
+    padding: 15px;
+    margin-left: 1250px;
+    margin-top: -100px;
+    margin-bottom: 30px;
+    width: 150px;
+}
+
+#navbar {
+    list-style-type: none;
+    border-left: 2px solid #2bc7bb;
+    border-right: 2px solid #2bc7bb;
+    border-bottom: 2px solid #2bc7bb;
+    width: 100px;
+    margin-left: -9px;
+    margin-top: 0px;
+    background-color: #34137c;
+}
+
+li.page {
+    border-bottom: 2px solid #2bc7bb;
+    width: 141px;
+    margin-left: -40px;
+}
+
+a.plinks {
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 25px;
+    color: #dcddcd;
+    display: block;
+    padding: 15px;
+}
+
+#create {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-family: sans-serif;
+    font-size: 24px;
+    text-decoration: none;
+    text-align: center;
+    color: #363635;
+    display: block;
+}
+
+#csbutton {
+    width: 650px;
+    margin-left: 400px;
+    margin-bottom: 50px;
+    margin-top: -725px;
+    background-color: #2bc7bb;
+}
+
+h2 {
+    font-size: 25px;
+    font-family: sans-serif;
+    color: #363635;
+    padding-left: 35px;
+}
+
+ul.storylist {
+    list-style-type: none;
+    font-family: serif;
+    font-size: 20px;
+    border-top: 5px solid #363635;
+}
+
+li.title {
+    padding: 10px 10px 10px 10px;
+    border-bottom: 2px solid #363635;
+    width: 630px;
+    margin-left: -40px;
+    display: block;
+}
+
+a.story:link {
+    text-decoration: none;
+    color: #363635;
+    padding: 10px;
+    margin-top: -9px;
+    margin-bottom: -9px;
+    margin-left: -10px;
+    margin-right: -10px;
+    display: block;
+}
+
+a.story:active {
+    color: #363635;
+}
+
+a.story:visited {
+    color: #363635;
+}
+
+div.list{
+    background-color: #ffffff;
+    border: 5px solid #363635;
+    width: 650px;
+}
+
+#YourTurnList {
+    margin-left: 400px;
+    margin-bottom: 50px;
+}
+
+#WaitTurnList {
+    margin-left: 400px;
+    margin-bottom: 50px;
+}
+
+#CompletedList {
+    margin-left: 400px;
+    margin-bottom: 100px;
+}
+
+html, body, #navbar {
+    height: 100%;
 }
