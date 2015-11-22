@@ -7,13 +7,15 @@
  */
 
 class Main extends ST_Controller{
-
+    
     function index() {
+        require_once ST_MODEL_DIR . "UserModel.php";
         $stories = $this->db->rawQuery("SELECT * FROM story WHERE ended_at is null");
-
-        //load_template('header', array('title' => 'home'));
-        load_view('Home', array('stories' => $stories));
-        load_template('footer');
+        
+        $user = (new UserModel())->getLoggedInUser();
+        l(print_r($user, true) . "is the current user \n");
+        
+        load_view('Home', array('stories' => $stories, 'user' => $user));
     }
 
     function new_story()

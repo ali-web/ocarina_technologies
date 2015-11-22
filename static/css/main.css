@@ -1,3 +1,4 @@
+
 li.page {
     border-bottom: 2px solid #2bc7bb;
     width: 141px;
@@ -26,9 +27,9 @@ a.plinks {
 
 #csbutton {
     width: 650px;
-    margin-left: 400px;
+    margin-left: 50px;
     margin-bottom: 50px;
-    margin-top: -725px;
+    margin-top: 15px;
     background-color: #2bc7bb;
 }
 
@@ -44,14 +45,15 @@ ul.storylist {
     font-family: serif;
     font-size: 20px;
     border-top: 5px solid #363635;
+    padding-left: 0px;
 }
 
 li.title {
     padding: 10px 10px 10px 10px;
     border-bottom: 2px solid #363635;
-    width: 630px;
-    margin-left: -40px;
+    width: 100%;
     display: block;
+    box-sizing: border-box;
 }
 
 a.story:link {
@@ -76,24 +78,20 @@ a.story:visited {
 div.list{
     background-color: #ffffff;
     border: 5px solid #363635;
-    width: 650px;
+    width: 640px;
 }
 
 #YourTurnList {
-    margin-left: 400px;
+    margin-left: 50px;
     margin-bottom: 50px;
 }
 
 #WaitTurnList {
-    margin-left: 400px;
+    margin-left: 50px;
     margin-bottom: 50px;
 }
 
 #CompletedList {
-    margin-left: 400px;
+    margin-left: 50px;
     margin-bottom: 100px;
-}
-
-html, body, #navbar {
-    height: 100%;
 }

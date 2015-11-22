@@ -34,6 +34,11 @@ class User extends ST_Controller {
         die("The user id is " . $_SESSION['user_id']);
     }
     
+    function logout() {
+        session_unset();
+        Http::redirect('/');
+    }
+    
 }
 
 ?>

@@ -59,13 +59,10 @@ function st_handler(){
 }
 
 
-function request_handler()
-{
+function request_handler() {
     global $routes;
-
-
 }
 
 st_handler();
 
-session_destroy();
+session_commit();
