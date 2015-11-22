@@ -37,8 +37,11 @@ CREATE TABLE `story` (
   `body` text NOT NULL,
   `started_at` datetime NOT NULL,
   `ended_at` datetime DEFAULT NULL,
+  `max_turns` int(11) NOT NULL,
+  `current_turn` int(11) NOT NULL DEFAULT '0',
+  `time_limit` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,11 +55,29 @@ CREATE TABLE `story_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `FK_user_id` int(11) unsigned NOT NULL,
   `FK_story_id` int(11) unsigned NOT NULL,
+  `turn_order` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_user_id` (`FK_user_id`),
   KEY `FK_story_id` (`FK_story_id`),
-  CONSTRAINT `story_user_ibfk_2` FOREIGN KEY (`FK_story_id`) REFERENCES `story` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `story_user_ibfk_1` FOREIGN KEY (`FK_user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `story_user_ibfk_1` FOREIGN KEY (`FK_user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `story_user_ibfk_2` FOREIGN KEY (`FK_story_id`) REFERENCES `story` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `turn`
+--
+
+DROP TABLE IF EXISTS `turn`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `turn` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `FK_story_id` int(10) unsigned NOT NULL,
+  `FK_user_id` int(10) unsigned NOT NULL,
+  `timestamp` datetime NOT NULL,
+  `words` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -74,7 +95,7 @@ CREATE TABLE `user` (
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `fb_id` (`fb_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -86,4 +107,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-21  0:48:01
+-- Dump completed on 2015-11-22 22:15:29
