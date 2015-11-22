@@ -5,21 +5,20 @@
         <link rel="stylesheet" href="<?= auto_version(ST_CSS_SITE_WEB_ROOT . 'base.css') ?>" />
 
         <script type="text/javascript" src="/js/jquery.js"></script>
+        <script src="http://use.edgefonts.net/indie-flower:n4:all.js"></script>
         <script type="text/javascript" src="<?= auto_version(ST_JS_SITE_WEB_ROOT . 'main.js') ?>"></script>
     </head>
     
     <body>
-        <section id="wrapper">
-            <header>
-                <section id="header_main">
-                    <nav>
-                        <ul id="nav-main">
-                            <li><a href="/">Home</a></li> |
-                        </ul>
-                    </nav>
-                </section>    
-            </header>
-            
-            <section id="main">
-                <h1 id="page_title"><?php echo $title; ?></h1>
-            
+        <div id="header">
+            <h1><?= $title ?></h1>
+            <a href="" id="notifications">Notifications</a>
+        </div>
+
+        <ul id="navbar">
+            <li class="page"><a href="index.html" class="plinks">Home</a></li>
+            <li class="page"><a href="Friends.html" class="plinks">Friends</a></li>
+            <li class="page"><a href="Settings.html" class="plinks">Settings</a></li>
+            <li class="page"><a href="Help.html" class="plinks">Help</a></li>
+        </ul>
+
