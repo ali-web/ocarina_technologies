@@ -10,6 +10,8 @@ require_once ST_INCLUDE_DIR . 'ST_Controller.php';
 require_once ST_INCLUDE_DIR . 'ST_Model.php';
 //require_once ST_INCLUDE_DIR . 'auth.php';
 
+require_once ST_MODEL_DIR . "UserModel.php";
+
 session_start();
 
 function st_handler(){

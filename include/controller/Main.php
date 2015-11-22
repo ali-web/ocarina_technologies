@@ -9,8 +9,8 @@
 class Main extends ST_Controller{
     
     function index() {
-        require_once ST_MODEL_DIR . "UserModel.php";
         $user = (new UserModel())->getLoggedInUser();
+        
         $stories = $this->db->rawQuery("SELECT * FROM story 
                                         INNER JOIN 
                                             story_user ON story.id=story_user.FK_story_id
@@ -19,8 +19,9 @@ class Main extends ST_Controller{
                                             AND story_user.FK_user_id = ?
                                        ", array($user['id']));
         
-        
-        load_view('Home', array('stories' => $stories, 'user' => $user));
+        load_template('header', array('user' => $user, 'title' => 'StoryTime With Friends'));
+        load_view('Home', array('stories' => $stories));
+        load_template('footer');
     }
 
     function new_story()
