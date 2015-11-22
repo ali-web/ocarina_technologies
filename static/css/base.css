@@ -102,6 +102,9 @@ h1 {
     margin-left: -9px;
     margin-top: 0px;
     background-color: #34137c;
+
+    float: left;
+    margin-right: 100px;
 }
 
 li.page {
