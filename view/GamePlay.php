@@ -4,8 +4,9 @@
     <head>
         <title>Your Turn</title> 
         <?php echo $uri?>
+        <link rel="stylesheet" type="text/css" href="/static/css/common.css"></link>
         <link rel="stylesheet" type="text/css" href="/static/css/gameplay.css">
-        <script src="http://use.edgefonts.net/indie-flower:n4:all.js"></script>
+        <script src="//use.edgefonts.net/indie-flower:n4:all.js"></script>
     </head>
     
     <body>

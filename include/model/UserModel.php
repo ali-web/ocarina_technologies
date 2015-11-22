@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 class UserModel extends ST_Model {
     
     private $error;
@@ -87,7 +85,6 @@ class UserModel extends ST_Model {
             if (!$user) {
                 return null;
             }
-            
             return $user;
         } else {
             return null;

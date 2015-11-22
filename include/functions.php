@@ -97,3 +97,7 @@ function load_model($model)
 
     return $obj;
 }
+
+function l($msg) {
+    file_put_contents("php://stderr", $msg);
+}
