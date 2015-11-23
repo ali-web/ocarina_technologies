@@ -30,7 +30,7 @@ $(function() {
         <input type="text" name="numturns">
     </div>
     <input type="hidden" name="game_uri" value="<?php echo $uri;?>">
-    <input type="hidden" name="game_title" value="<?php echo $title;?>">
+    <input id="game_title_input" type="hidden" name="game_title" value="<?php echo $title;?>">
     <input id="create_story" name="create_story" type="submit" value="Create Story">
 </form>
 
@@ -38,6 +38,7 @@ $(function() {
     $('#regen').on('click', function() {
         $.get("/Title/regen/", {rt: "ajax"}, function(data) {
             $("#StoryTitle").text(data);
+            $("#game_title_input").attr('value', data);
         });
     });
 </script>
