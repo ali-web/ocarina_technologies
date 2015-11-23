@@ -12,7 +12,8 @@ class Main extends ST_Controller{
         $user = (new UserModel())->getLoggedInUser();
         
         
-        $stories = $this->db->rawQuery("SELECT * FROM story 
+        $yourTurnStories = $this->db->rawQuery("
+                                        SELECT * FROM story 
                                         INNER JOIN 
                                             story_user ON story.id=story_user.FK_story_id
                                         WHERE 
@@ -21,9 +22,29 @@ class Main extends ST_Controller{
                                             AND story_user.turn_order = story.current_turn % 
                                                                         (SELECT COUNT(*) FROM story_user WHERE story_user.FK_story_id = story.id)
                                        ", array($user['id']));
+                                       
+        $waitingTurnStories = $this->db->rawQuery("
+                                        SELECT * FROM story 
+                                        INNER JOIN 
+                                            story_user ON story.id=story_user.FK_story_id
+                                        WHERE 
+                                            ended_at IS NULL
+                                            AND story_user.FK_user_id = ?
+                                            AND story_user.turn_order != story.current_turn % 
+                                                                        (SELECT COUNT(*) FROM story_user WHERE story_user.FK_story_id = story.id)
+                                        ", array($user['id']));
+        
+        $completedStories = $this->db->rawQuery("
+                                        SELECT * FROM story 
+                                        INNER JOIN 
+                                            story_user ON story.id=story_user.FK_story_id
+                                        WHERE 
+                                            ended_at IS NOT NULL
+                                            AND story_user.FK_user_id = ?
+                                        ", array($user['id']));
         
         load_template('header', array('user' => $user, 'title' => 'StoryTime With Friends'));
-        load_view('Home', array('stories' => $stories));
+        load_view('Home', array('yourTurnStories' => $yourTurnStories, 'waitingTurnStories' => $waitingTurnStories, 'completedStories' => $completedStories));
         load_template('footer');
     }
 
@@ -64,7 +85,6 @@ class Main extends ST_Controller{
                     'FK_story_id' => $storyId,
                     'turn_order' => $i
                 );
-                l(print_r($storyuser, true), '\n');
                 $storyuserid = $this->db->insert('story_user', $storyuser);
             }
             
@@ -118,21 +138,26 @@ class Main extends ST_Controller{
         load_view('GamePlay', $game_info[0]);
     }
     
-    function waitTurn() {
-        load_view('WaitTurn');
+    function waitTurn($uri) {
+        $user = (new UserModel())->getLoggedInUser();
+        $stories = $this->db->rawQuery("SELECT * FROM `story` WHERE `story`.`uri` = ? LIMIT 1", array($uri));
+        $story = $stories[0];
+        
+        load_template('header', array('title' => 'Waiting for Turn', 'user' => $user));
+        load_view('WaitTurn', array('story' => $story));
+        load_template('footer');
+        
     }
     
     function completedStories() {
         load_view('CompletedStories');
     }
     
-    /*
     function story($uri)
     {
         $phrase = g('phrase'); 
         $user = (new UserModel())->getLoggedInUser();
         
-        l("Running the SQL query \n");
         $story = DBUtil::getOne($this->db->rawQuery('   
                             SELECT 
                                 * 
@@ -147,7 +172,6 @@ class Main extends ST_Controller{
                                                         (SELECT COUNT(*) FROM `story_user` WHERE `story_user`.`FK_story_id` = `story`.`id`)
                     ', array($uri, $user['id'])));
         
-        l(print_r($story, true) . " for story($uri)\n");
         if (!$story) {
             //Not this users turn.
             Http::redirect('/Main/index');
@@ -163,8 +187,8 @@ class Main extends ST_Controller{
             ));
             
             $phrase = " " . $phrase;
-            if ($story['current_turn'] === $story['max_turs'] - 1) {
-                $this->db->rawQuery("UPDATE story SET body = CONCAT(body, ?), current_turn = current_turn + 1, ended_at = ? WHERE uri = ?", array($phrase, $this->db->now(), $uri));
+            if ($story['current_turn'] === $story['max_turns'] - 1) {
+                $this->db->rawQuery("UPDATE story SET body = CONCAT(body, ?), current_turn = current_turn + 1, ended_at = NOW() WHERE uri = ?", array($phrase, $uri));
             } else {
                 $this->db->rawQuery("UPDATE story SET body = CONCAT(body, ?), current_turn = current_turn + 1 WHERE uri = ?", array($phrase, $uri));
             }
@@ -175,5 +199,7 @@ class Main extends ST_Controller{
         load_view('new_story', $story);
         load_template('footer');
     }
-    */
 }
+}
+
+?>
