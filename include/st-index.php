@@ -35,8 +35,8 @@ function st_handler(){
     if(file_exists(ST_CONTROLLER_DIR . $class . '.php')){
         //echo 'hi'; return;
         require_once ST_CONTROLLER_DIR . $class . '.php';
-
-        $controller = new $class;
+        
+        $controller = new $class();
 
         if (method_exists($controller, $method)){
             call_user_func_array(array($controller, $method), $arguments);
@@ -65,10 +65,6 @@ function request_handler() {
     global $routes;
 }
 
-global $skipHandle;
-
-if(isset($skipHandle) && $skipHandle) {
-    st_handler();
-}
+st_handler();
 
 session_commit();

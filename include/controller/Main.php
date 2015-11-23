@@ -12,7 +12,8 @@ class Main extends ST_Controller{
         $user = (new UserModel())->getLoggedInUser();
         
         
-        $stories = $this->db->rawQuery("SELECT * FROM story 
+        $yourTurnStories = $this->db->rawQuery("
+                                        SELECT * FROM story 
                                         INNER JOIN 
                                             story_user ON story.id=story_user.FK_story_id
                                         WHERE 
@@ -21,9 +22,29 @@ class Main extends ST_Controller{
                                             AND story_user.turn_order = story.current_turn % 
                                                                         (SELECT COUNT(*) FROM story_user WHERE story_user.FK_story_id = story.id)
                                        ", array($user['id']));
+                                       
+        $waitingTurnStories = $this->db->rawQuery("
+                                        SELECT * FROM story 
+                                        INNER JOIN 
+                                            story_user ON story.id=story_user.FK_story_id
+                                        WHERE 
+                                            ended_at IS NULL
+                                            AND story_user.FK_user_id = ?
+                                            AND story_user.turn_order != story.current_turn % 
+                                                                        (SELECT COUNT(*) FROM story_user WHERE story_user.FK_story_id = story.id)
+                                        ", array($user['id']));
+        
+        $completedStories = $this->db->rawQuery("
+                                        SELECT * FROM story 
+                                        INNER JOIN 
+                                            story_user ON story.id=story_user.FK_story_id
+                                        WHERE 
+                                            ended_at IS NOT NULL
+                                            AND story_user.FK_user_id = ?
+                                        ", array($user['id']));
         
         load_template('header', array('user' => $user, 'title' => 'StoryTime With Friends'));
-        load_view('Home', array('stories' => $stories));
+        load_view('Home', array('yourTurnStories' => $yourTurnStories, 'waitingTurnStories' => $waitingTurnStories, 'completedStories' => $completedStories));
         load_template('footer');
     }
 
@@ -154,3 +175,5 @@ class Main extends ST_Controller{
         load_template('footer');
     }
 }
+
+?>
