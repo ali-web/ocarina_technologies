@@ -11,9 +11,8 @@ $(function() {
 </script>
 
 
-<!DOCTYPE html>
 <div class="margin-break"></div>
-<h1><?php echo $title; ?></h1>
+<h1 id="StoryTitle"><?php echo $title; ?></h1>
 
 <form>
     <center><input id="regen" type="button" value="Regenerate Title"></center>
@@ -34,3 +33,11 @@ $(function() {
     <input type="hidden" name="game_title" value="<?php echo $title;?>">
     <input id="create_story" name="create_story" type="submit" value="Create Story">
 </form>
+
+<script>
+    $('#regen').on('click', function() {
+        $.get("/Title/regen/", {rt: "ajax"}, function(data) {
+            $("#StoryTitle").text(data);
+        });
+    });
+</script>

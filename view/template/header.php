@@ -4,6 +4,7 @@
         <title><?php echo $title;?></title>
         <link rel="stylesheet" type="text/css" href="/static/css/main.css"></link>
         <script src="//use.edgefonts.net/indie-flower:n4:all.js"></script>
+        <script src="/static/js/jquery.js" type="text/javascript"></script>
         
         <meta name="viewport" content="width=device-width, initial-scale=.5">
     </head>
