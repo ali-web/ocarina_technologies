@@ -50,36 +50,38 @@ class Main extends ST_Controller{
 
     function new_story()
     {
-        $title = StoryTime::titleGenerator();
-        $uri = StoryTime::URIGenerator();
-        
+        $uri = $_POST["game_uri"];
         require_once ST_MODEL_DIR . "UserModel.php";
         $user = (new UserModel())->getLoggedInuser();
+
         if (!$user) {
             Http::redirect('/User/index');
         }
 
         $story = array(
             'uri' => $uri,
-            'title' => $title,
+            'title' => $_POST["game_title"],
             'body'=> '',
-            'max_turns' => 15,
+            'max_turns' => $_POST["numturns"],
             'time_limit' => 1000,
             'started_at' => $this->db->now()
         );
         $storyId = $this->db->insert('story', $story);
         
-
         if (!$storyId){
             echo $this->db->getLastError();
         } else {
-            $users = $this->db->rawQuery('SELECT * FROM user');
+            //$users = $this->db->rawQuery('SELECT * FROM user');
+            $invited_friends = $_POST["myFriends"];
             $userIds = array();
-            for ($i = 0; $i < count($users); $i++) {
-                $userIds[$i] = $users[$i]['id'];
+            foreach($invited_friends as $person) {
+                $userId = $this->db->rawQuery('SELECT * FROM user WHERE name = ?', array($person));
+                $userIds[] = $userId[0]['id'];
             }
+            
             shuffle($userIds);
-            for ($i = 0; $i < count($users); $i++) {
+            array_unshift($userIds, $user['id']); //game creator gets first turn
+            for ($i = 0; $i < count($userIds); $i++) {
                 $storyuser = array(
                     'FK_user_id' => $userIds[$i],
                     'FK_story_id' => $storyId,
@@ -88,10 +90,8 @@ class Main extends ST_Controller{
                 $storyuserid = $this->db->insert('story_user', $storyuser);
             }
             
-            
-            
-            Http::redirect('/Main/story/' . $uri);
-            Http::redirect('/Main/CreateStory');
+            Http::redirect('/Main/gamePlay/' . $uri);
+            //Http::redirect('/Main/CreateStory');
         }
     }
 
@@ -124,18 +124,11 @@ class Main extends ST_Controller{
     }
     
     function gamePlay($uri) {
-        //just created a story...put in it's uri into the database & num of turns for that game
-        if(isset($_POST["create_story"]) && isset($_POST["numturns"]) && isset($_POST["game_uri"]) && isset($_POST["game_title"])) {
-            $max_turns = $_POST["numturns"];
-            $game_uri =  $_POST["game_uri"];
-            $started_at = $this->db->now();
-            $title = $_POST["game_title"];
-            $body = "";
-            $this->db->insert('story', array("max_turns"=>$max_turns, "uri"=>$game_uri, "started_at"=>$started_at, "title"=>$title, "body"=>$body));
-        }
-        
+        $user = (new UserModel())->getLoggedInUser();
         $game_info = $this->db->rawQuery('SELECT title,body FROM story WHERE uri = ?', array($uri));
+        load_template('header', array('title' => 'StoryTime GamePlay', 'user' => $user));
         load_view('GamePlay', $game_info[0]);
+        load_template('footer');
     }
     
     function waitTurn($uri) {

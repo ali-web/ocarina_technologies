@@ -8,6 +8,21 @@ $(function() {
         source: '/AutoComplete/complete/'
     });
 });
+
+var counter = 1;
+var limit = 10;
+function addInput(divName){
+     if (counter == limit)  {
+          alert("You have reached the limit of adding " + counter + " inputs");
+     }
+     else {
+          var newdiv = document.createElement('div');
+          newdiv.innerHTML = "<br><input id='friends_search' type='text' name='myFriends[]' class='ui-autocomplete-input' autocomplete='off'>";
+          document.getElementById(divName).appendChild(newdiv);
+          counter++;
+     }
+}
+
 </script>
 
 
@@ -20,11 +35,14 @@ $(function() {
 </form>
 
 
-<form id="turns" name="turns" method="post" action="gamePlay/<?php echo $uri;?>">
-<div id="friends_list" class="list">
-    <h2>Invite Friends:</h2>
-    <input id="friends_search">
-</div>
+<form id="turns" name="turns" method="post" action="new_story">
+    <div id="friends_list_div" class="list">
+        <h2>Invite Friends:</h2>
+        <div id="dynamicInput">
+        <input id="friends_search" type="text" name="myFriends[]">
+        </div>
+        <input type="button" value="Add another friend" onClick="addInput('dynamicInput');">
+    </div>
     
     <div id="Settings" class="list">
         <h2>Turns per person:</h2>
