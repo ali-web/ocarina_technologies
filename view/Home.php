@@ -1,6 +1,6 @@
 <div class="margin-break"></div>
 <div id="csbutton">
-    <a href="/Main/new_story" id="create"><b>+ Create Story</b></a>
+    <a href="/Main/CreateStory" id="create"><b>+ Create Story</b></a>
 </div>
     
 <div id="YourTurnList" class="list">
@@ -32,3 +32,4 @@
         <?php endforeach; ?>
     </ul>
 </div>   
+            

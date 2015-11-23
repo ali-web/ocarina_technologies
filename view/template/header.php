@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+<<<<<<< HEAD
+        <title><?php echo $title;?></title>
+        <link rel="stylesheet" type="text/css" href="/static/css/base.css"></link>
+=======
         <title>StoryTime with Friends</title>
+>>>>>>> 71282618b6a2d41c69f5cbdf26cd00bbb9ced8b4
         <link rel="stylesheet" type="text/css" href="/static/css/main.css">
         <script src="//use.edgefonts.net/indie-flower:n4:all.js"></script>
         
@@ -11,7 +16,7 @@
     <body>
         <div id="header">
             <div class="header-text">
-                <h1>StoryTime with Friends</h1>
+                <h1><?php echo $title;?></h1>
             </div>
             <div class="status">
                 <div class="user-status">
