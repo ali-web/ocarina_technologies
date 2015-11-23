@@ -50,7 +50,7 @@ class UserModel extends ST_Model {
                     ));
                     
             $response = json_decode($responseJson);
-            if ($response->error) {
+            if (isset($response->error) && $response->error) {
                 $this->error = true;
                 $this->errorMessage = "Unable to get user name for user id: " . $user['id'] . " . Facebook returned: " . $response->error->message;
                 return false;
@@ -102,7 +102,7 @@ class UserModel extends ST_Model {
                 ));
         
         $response = json_decode($responseJson);
-        if ($response->error) {
+        if (isset($response->error) && $response->error) {
             $this->error = true;
             $this->errorMessage = "Unable to exchange code for access token with facebook. Facebook gave: " . $response->error->message;
             return false;
@@ -116,7 +116,7 @@ class UserModel extends ST_Model {
                 ));
         
         $response = json_decode($responseJson);
-        if ($response->error) {
+        if (isset($response->error) && $response->error) {
             $this->error = true;
             $this->errorMessage = "Unable to check access token state for user. Facebook gave: " . $response->error->message;
             return false;

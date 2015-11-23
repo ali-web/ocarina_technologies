@@ -1,10 +1,5 @@
-
-            <footer>
-            <div id="footer_con">
-                <nav id="footer_nav" >
-                    <a href="#">Contact us</a> |
-                </nav>
             </div>
-            </footer>
-    </body>
+            <div class="clear"></div>
+        </div>
+    </body>   
 </html>

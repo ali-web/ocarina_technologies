@@ -1,34 +1,18 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>StoryTime with Friends</title>
-        <link rel="stylesheet" type="text/css" href="/static/css/common.css"></link>
-        <link rel="stylesheet" type="text/css" href="/static/css/main.css">
-        <script src="//use.edgefonts.net/indie-flower:n4:all.js"></script>
-        
-        <meta name="viewport" content="width=device-width, initial-scale=.5">
-    </head>
+<div class="margin-break"></div>
+<div id="csbutton">
+    <a href="/Main/new_story" id="create"><b>+ Create Story</b></a>
+</div>
     
-    <body>
-        <div id="header">
-            <div class="header-text">
-                <h1>StoryTime with Friends</h1>
-            </div>
-            <div class="status">
-                <div class="user-status">
-                    <?php if ($user) { ?>
-                        Welcome, <?= $user['name'] ?>.<br />
-                        <a href="User/logout">Logout</a>
-                    <?php } else { ?>
-                        Welcome, Please<br />
-                        <a href="User">Login</a>
-                    <?php } ?>
-                </div>
-                <a href="" id="notifications">Notifications</a>
-            </div>
-            <div class="clear"></div>
-            <div class="margin-break"></div>
-        </div>           
+<div id="YourTurnList" class="list">
+    <h2>Your Turn</h2>
+    <ul id="ytlist" class="storylist">
+        <?php 
+        foreach($stories as $story): ?>
+            <li class="title"><a href="/Main/gamePlay/<?= $story['uri'] ?>" class="story"><?= $story['title'] ?></a></li>
+            <!--<td><?= $story['started_at'] ?></td>-->
+        <?php endforeach; ?>
+    </ul>
+</div>
     
         <div class="wrapper">
             <div class="left-wrap">
