@@ -206,6 +206,5 @@ class Main extends ST_Controller{
         load_template('footer');
     }
 }
-}
 
 ?>

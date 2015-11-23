@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-<<<<<<< HEAD
         <title><?php echo $title;?></title>
-        <link rel="stylesheet" type="text/css" href="/static/css/base.css"></link>
-=======
-        <title>StoryTime with Friends</title>
->>>>>>> 71282618b6a2d41c69f5cbdf26cd00bbb9ced8b4
-        <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/main.css"></link>
         <script src="//use.edgefonts.net/indie-flower:n4:all.js"></script>
         
         <meta name="viewport" content="width=device-width, initial-scale=.5">
