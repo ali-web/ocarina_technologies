@@ -1,5 +1,4 @@
 <?php
-
 require_once ST_INCLUDE_DIR . 'config.php';
 require_once ST_INCLUDE_DIR . 'config-depending.php';
 require_once ST_INCLUDE_DIR . 'bootstrap.php';
@@ -65,10 +64,6 @@ function request_handler() {
     global $routes;
 }
 
-global $skipHandle;
-
-if(isset($skipHandle) && $skipHandle) {
-    st_handler();
-}
+st_handler();
 
 session_commit();

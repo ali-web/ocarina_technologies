@@ -76,12 +76,19 @@ class Main extends ST_Controller{
     }
 
     function createStory() {
+        $user = (new UserModel())->getLoggedInUser();
+        if(!$user) {
+            echo "not logged in";
+        }
+        
         $title = StoryTime::titleGenerator();
         $uri = StoryTime::URIGenerator();
         $title_array = array(
             'uri' => $uri,
             'title' => $title);
+        load_template('header', array('user' => $user, 'title' => 'Create Story'));
         load_view('CreateStory', $title_array);
+        load_template('footer');
     }
         
     function friends() {
