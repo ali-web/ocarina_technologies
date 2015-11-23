@@ -88,12 +88,25 @@ class Main extends ST_Controller{
     function completedStories() {
         load_view('CompletedStories');
     }
+
+    function storyIDFromURI($uri)
+    {
+        $story = DBUtil::getOne($this->db->rawQuery('SELECT id FROM story WHERE uri = ?', array($uri)));
+        return $story['id'];
+    }
     
     function story($uri)
     {
         $phrase = g('phrase');
+        $storyID = $this->storyIDFromURI($uri);
 
         if ($phrase){
+            $turn = DBUtil::getOne($this->db->rawQuery(
+                'SELECT UNIX_TIMESTAMP(started_at) AS started WHERE FK_story_id = ?', array($storyID))
+            );
+            if (time() - ST_TURN_TIME_LIMIT > $turn['started'])
+                echo 'time up!';
+
             $phrase = " " . $phrase;
             $this->db->rawQuery("UPDATE story SET body = CONCAT(body, ?) WHERE uri = ?", array($phrase, $uri));
         }

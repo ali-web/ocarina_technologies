@@ -14,3 +14,5 @@ define('ST_STATIC_SITE_WEB_ROOT', '/static/');
 define('ST_CSS_SITE_WEB_ROOT', ST_STATIC_SITE_WEB_ROOT . 'css/');
 define('ST_JS_SITE_WEB_ROOT', ST_STATIC_SITE_WEB_ROOT . 'js/');
 define('ST_IMAGES_SITE_WEB_ROOT', ST_STATIC_SITE_WEB_ROOT . 'image/');
+
+define('ST_TURN_TIME_LIMIT', 10);
