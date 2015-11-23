@@ -17,8 +17,14 @@ function addInput(divName){
      }
      else {
           var newdiv = document.createElement('div');
-          newdiv.innerHTML = "<br><input id='friends_search' type='text' name='myFriends[]' class='ui-autocomplete-input' autocomplete='off'>";
+          newdiv.innerHTML = "<br><input id='friends_search" + counter + "' type='text' name='myFriends[]' class='ui-autocomplete-input' autocomplete='off'>";
           document.getElementById(divName).appendChild(newdiv);
+          
+          $("#friends_search" + counter).autocomplete({
+              source: '/AutoComplete/complete/'
+          });
+          
+          
           counter++;
      }
 }

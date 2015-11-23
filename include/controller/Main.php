@@ -58,11 +58,13 @@ class Main extends ST_Controller{
             Http::redirect('/User/index');
         }
 
+        $invited_friends = $_POST["myFriends"];
+        
         $story = array(
             'uri' => $uri,
             'title' => $_POST["game_title"],
             'body'=> '',
-            'max_turns' => $_POST["numturns"],
+            'max_turns' => $_POST["numturns"] * (count($invited_friends) + 1),
             'time_limit' => 1000,
             'started_at' => $this->db->now()
         );
@@ -72,7 +74,6 @@ class Main extends ST_Controller{
             echo $this->db->getLastError();
         } else {
             //$users = $this->db->rawQuery('SELECT * FROM user');
-            $invited_friends = $_POST["myFriends"];
             $userIds = array();
             foreach($invited_friends as $person) {
                 $userId = $this->db->rawQuery('SELECT * FROM user WHERE name = ?', array($person));
@@ -123,14 +124,6 @@ class Main extends ST_Controller{
         load_view('Help');
     }
     
-    function gamePlay($uri) {
-        $user = (new UserModel())->getLoggedInUser();
-        $game_info = $this->db->rawQuery('SELECT title,body FROM story WHERE uri = ?', array($uri));
-        load_template('header', array('title' => 'StoryTime GamePlay', 'user' => $user));
-        load_view('GamePlay', $game_info[0]);
-        load_template('footer');
-    }
-    
     function waitTurn($uri) {
         $user = (new UserModel())->getLoggedInUser();
         $stories = $this->db->rawQuery("SELECT * FROM `story` WHERE `story`.`uri` = ? LIMIT 1", array($uri));
@@ -152,9 +145,10 @@ class Main extends ST_Controller{
         load_template('footer');
     }
     
-    function story($uri)
+    function gamePlay($uri)
     {
-        $phrase = g('phrase'); 
+        l("Gameplay called\n");
+        $phrase = g('words'); 
         $user = (new UserModel())->getLoggedInUser();
         
         $story = DBUtil::getOne($this->db->rawQuery('   
@@ -191,11 +185,14 @@ class Main extends ST_Controller{
             } else {
                 $this->db->rawQuery("UPDATE story SET body = CONCAT(body, ?), current_turn = current_turn + 1 WHERE uri = ?", array($phrase, $uri));
             }
+            
+            Http::redirect('/Main/index');
+            return;
         }
 
 
         load_template('header', array('title' => 'New Story', 'user' => $user));
-        load_view('new_story', $story);
+        load_view('GamePlay', $story);
         load_template('footer');
     }
 }

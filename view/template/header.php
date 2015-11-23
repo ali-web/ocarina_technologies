@@ -18,10 +18,10 @@
                 <div class="user-status">
                     <?php if ($user) { ?>
                         Welcome, <?= $user['name'] ?>.<br />
-                        <a href="User/logout">Logout</a>
+                        <a href="/User/logout">Logout</a>
                     <?php } else { ?>
                         Welcome, Please<br />
-                        <a href="User">Login</a>
+                        <a href="/User">Login</a>
                     <?php } ?>
                 </div>
                 <a href="" id="notifications">Notifications</a>
