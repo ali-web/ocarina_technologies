@@ -11,12 +11,15 @@ class Main extends ST_Controller{
     function index() {
         $user = (new UserModel())->getLoggedInUser();
         
+        
         $stories = $this->db->rawQuery("SELECT * FROM story 
                                         INNER JOIN 
                                             story_user ON story.id=story_user.FK_story_id
                                         WHERE 
                                             ended_at IS NULL
                                             AND story_user.FK_user_id = ?
+                                            AND story_user.turn_order = story.current_turn % 
+                                                                        (SELECT COUNT(*) FROM story_user WHERE story_user.FK_story_id = story.id)
                                        ", array($user['id']));
         
         load_template('header', array('user' => $user, 'title' => 'StoryTime With Friends'));
@@ -39,20 +42,33 @@ class Main extends ST_Controller{
             'uri' => $uri,
             'title' => $title,
             'body'=> '',
+            'max_turns' => 15,
+            'time_limit' => 1000,
             'started_at' => $this->db->now()
         );
-        $id = $this->db->insert('story', $story);
+        $storyId = $this->db->insert('story', $story);
         
 
-        if (!$id){
+        if (!$storyId){
             echo $this->db->getLastError();
         } else {
-            $storyuser = array(
-                'FK_user_id' => $user['id'],
-                'FK_story_id' => $id
-            );
+            $users = $this->db->rawQuery('SELECT * FROM user');
+            $userIds = array();
+            for ($i = 0; $i < count($users); $i++) {
+                $userIds[$i] = $users[$i]['id'];
+            }
+            shuffle($userIds);
+            for ($i = 0; $i < count($users); $i++) {
+                $storyuser = array(
+                    'FK_user_id' => $userIds[$i],
+                    'FK_story_id' => $storyId,
+                    'turn_order' => $i
+                );
+                l(print_r($storyuser, true), '\n');
+                $storyuserid = $this->db->insert('story_user', $storyuser);
+            }
             
-            $storyuserid = $this->db->insert('story_user', $storyuser);
+            
             
             Http::redirect('/Main/story/' . $uri);
             Http::redirect('/Main/CreateStory');
@@ -91,21 +107,50 @@ class Main extends ST_Controller{
     
     function story($uri)
     {
-        $phrase = g('phrase');
+        $phrase = g('phrase'); 
+        $user = (new UserModel())->getLoggedInUser();
+        
+        l("Running the SQL query \n");
+        $story = DBUtil::getOne($this->db->rawQuery('   
+                            SELECT 
+                                * 
+                            FROM 
+                                `story`  
+                            INNER JOIN `story_user`
+                                ON `story_user`.`FK_story_id` = `story`.`id`
+                            WHERE 
+                                `story`.`uri` = ?
+                                AND `story_user`.`FK_user_id` = ?
+                                AND `story_user`.`turn_order` = `story`.`current_turn` % 
+                                                        (SELECT COUNT(*) FROM `story_user` WHERE `story_user`.`FK_story_id` = `story`.`id`)
+                    ', array($uri, $user['id'])));
+        
+        l(print_r($story, true) . " for story($uri)\n");
+        if (!$story) {
+            //Not this users turn.
+            Http::redirect('/Main/index');
+        }
 
         if ($phrase){
+            
+            $this->db->insert('turn', array(
+                'FK_story_id' => $story['id'],
+                'FK_user_id' => $user['id'],
+                'words' => $phrase,
+                'timestamp' => $this->db->now()
+            ));
+            
             $phrase = " " . $phrase;
-            $this->db->rawQuery("UPDATE story SET body = CONCAT(body, ?) WHERE uri = ?", array($phrase, $uri));
+            if ($story['current_turn'] === $story['max_turs'] - 1) {
+                $this->db->rawQuery("UPDATE story SET body = CONCAT(body, ?), current_turn = current_turn + 1, ended_at = ? WHERE uri = ?", array($phrase, $this->db->now(), $uri));
+            } else {
+                $this->db->rawQuery("UPDATE story SET body = CONCAT(body, ?), current_turn = current_turn + 1 WHERE uri = ?", array($phrase, $uri));
+            }
         }
 
-        $story = DBUtil::getOne($this->db->rawQuery('SELECT title,body,started_at FROM story WHERE uri = ?', array($uri)));
 
-        if (!$story){
-            Http::notFound();
-        } else {
-            load_template('header', array('title' => 'New Story'));
-            load_view('new_story', $story);
-            load_template('footer');
-        }
+        load_template('header', array('title' => 'New Story', 'user' => $user));
+        load_view('new_story', $story);
+        load_template('footer');
     }
 }
