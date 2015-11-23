@@ -32,10 +32,9 @@
         <div class="wrapper">
             <div class="left-wrap">
             <ul id="navbar">
-                <li class="page"><a href="" class="plinks">Home</a></li>
-                <li class="page"><a href="Main/friends" class="plinks">Friends</a></li>
-                <li class="page"><a href="Main/settings" class="plinks">Settings</a></li>
-                <li class="page"><a href="Main/help" class="plinks">Help</a></li>
+                <li class="page"><a href="/Main/index" class="plinks">Home</a></li>
+                <li class="page"><a href="/Main/settings" class="plinks">Settings</a></li>
+                <li class="page"><a href="/Main/help" class="plinks">Help</a></li>
             </ul>
         </div>
         <div class="right-wrap">

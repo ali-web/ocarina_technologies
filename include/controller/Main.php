@@ -128,8 +128,14 @@ class Main extends ST_Controller{
         
     }
     
-    function completedStories() {
-        load_view('CompletedStories');
+    function completedStories($uri) {
+        $user = (new UserModel())->getLoggedInUser();
+        $stories = $this->db->rawQuery("SELECT * FROM `story` WHERE `story`.`uri` = ? LIMIT 1", array($uri));
+        $story = $stories[0];
+        
+        load_template('header', array('title' => 'Waiting for Turn', 'user' => $user));
+        load_view('CompletedStories', array('story' => $story));
+        load_template('footer');
     }
     
     function story($uri)
