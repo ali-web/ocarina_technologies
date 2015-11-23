@@ -153,10 +153,11 @@ class Main extends ST_Controller{
         
         $story = DBUtil::getOne($this->db->rawQuery('   
                             SELECT 
-                                * 
+                                *,
+                                `story`.`id` AS id
                             FROM 
                                 `story`  
-                            INNER JOIN `story_user`
+                            INNER JOIN `story_user` AS story_user
                                 ON `story_user`.`FK_story_id` = `story`.`id`
                             WHERE 
                                 `story`.`uri` = ?
@@ -167,7 +168,7 @@ class Main extends ST_Controller{
         
         if (!$story) {
             //Not this users turn.
-            Http::redirect('/Main/index');
+            Http::redirect('/Main/index'); 
         }
 
         if ($phrase){
