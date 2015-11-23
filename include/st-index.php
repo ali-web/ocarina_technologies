@@ -45,7 +45,7 @@ function st_handler(){
         load_template('header', ['title' => 'hi']);
         load_view('');
         load_template('footer');*/
-    } elseif ((g('rt') == 'ajax' && file_exists(ST_AJAX_DIR . $uri_segment[0]))) {
+    } elseif ((g('rt') == 'ajax' || g('term')) && file_exists(ST_AJAX_DIR . $uri_segment[0] . ".php")) {
         require_once ST_AJAX_DIR . $uri_segment[0] . '.php';
 
         if (function_exists($uri_segment[1])){

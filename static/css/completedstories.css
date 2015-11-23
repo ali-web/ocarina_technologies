@@ -25,6 +25,18 @@ h2 {
     width: 850px;
 }
 
+h3 {
+    margin-left: 400px;
+    margin-bottom: 50px;
+    margin-top: -725px;
+    background-color: #2bc7bb;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 20px;
+    padding: 15px;
+    width: 600px;
+}
+
 p {
     background-color: white;
     margin-left: 400px;

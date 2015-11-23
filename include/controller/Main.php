@@ -57,12 +57,16 @@ class Main extends ST_Controller{
             Http::redirect('/Main/CreateStory');
         }
     }
-    
+
     function createStory() {
-        //include '../view/CreateStory.php';
-        load_view('CreateStory');
+        $title = StoryTime::titleGenerator();
+        $uri = StoryTime::URIGenerator();
+        $title_array = array(
+            'uri' => $uri,
+            'title' => $title);
+        load_view('CreateStory', $title_array);
     }
-    
+        
     function friends() {
         load_view('Friends');
     }
@@ -76,8 +80,18 @@ class Main extends ST_Controller{
     }
     
     function gamePlay($uri) {
-        $uri_array = array("uri" => $uri);
-        load_view('GamePlay', $uri_array);
+        //just created a story...put in it's uri into the database & num of turns for that game
+        if(isset($_POST["create_story"]) && isset($_POST["numturns"]) && isset($_POST["game_uri"]) && isset($_POST["game_title"])) {
+            $max_turns = $_POST["numturns"];
+            $game_uri =  $_POST["game_uri"];
+            $started_at = $this->db->now();
+            $title = $_POST["game_title"];
+            $body = "";
+            $this->db->insert('story', array("max_turns"=>$max_turns, "uri"=>$game_uri, "started_at"=>$started_at, "title"=>$title, "body"=>$body));
+        }
+        
+        $game_info = $this->db->rawQuery('SELECT title,body FROM story WHERE uri = ?', array($uri));
+        load_view('GamePlay', $game_info[0]);
     }
     
     function waitTurn() {
@@ -88,6 +102,7 @@ class Main extends ST_Controller{
         load_view('CompletedStories');
     }
     
+    /*
     function story($uri)
     {
         $phrase = g('phrase');
@@ -107,4 +122,5 @@ class Main extends ST_Controller{
             load_template('footer');
         }
     }
+    */
 }
