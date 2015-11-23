@@ -2,7 +2,6 @@
 <html>
     <head>
         <title>StoryTime with Friends</title>
-        <link rel="stylesheet" type="text/css" href="/static/css/base.css"></link>
         <link rel="stylesheet" type="text/css" href="/static/css/main.css">
         <script src="//use.edgefonts.net/indie-flower:n4:all.js"></script>
         
