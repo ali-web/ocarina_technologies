@@ -144,6 +144,12 @@ class Main extends ST_Controller{
         load_view('CompletedStories', array('story' => $story));
         load_template('footer');
     }
+
+    function storyIDFromURI($uri)
+    {
+        $story = DBUtil::getOne($this->db->rawQuery('SELECT id FROM story WHERE uri = ?', array($uri)));
+        return $story['id'];
+    }
     
     function gamePlay($uri)
     {
@@ -180,6 +186,7 @@ class Main extends ST_Controller{
                 'timestamp' => $this->db->now()
             ));
             
+
             $phrase = " " . $phrase;
             if ($story['current_turn'] === $story['max_turns'] - 1) {
                 $this->db->rawQuery("UPDATE story SET body = CONCAT(body, ?), current_turn = current_turn + 1, ended_at = NOW() WHERE uri = ?", array($phrase, $uri));
