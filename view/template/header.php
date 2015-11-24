@@ -6,6 +6,7 @@
         <script src="//use.edgefonts.net/indie-flower:n4:all.js"></script>
         <script src="/static/js/jquery.js" type="text/javascript"></script>
         <script src="/static/js/timer.js"></script>
+        <script src="/static/js/main.js"></script>
         
         <meta name="viewport" content="width=device-width, initial-scale=.5">
     </head>

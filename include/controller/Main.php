@@ -11,6 +11,7 @@ class Main extends ST_Controller{
     function index() {
         $user = (new UserModel())->getLoggedInUser();
         
+        $this->db->rawQuery("CALL MOVESTORIESFORWARD()");
         
         $yourTurnStories = $this->db->rawQuery("
                                         SELECT * FROM story 
@@ -160,10 +161,17 @@ class Main extends ST_Controller{
         $story = DBUtil::getOne($this->db->rawQuery('   
                             SELECT 
                                 *,
-                                `story`.`id` AS id
+                                `story`.`id` AS id,
+                                (CASE
+                                    WHEN `story`.`current_turn` > 0 THEN
+                                        (SELECT MAX(`turn`.`timestamp`) FROM `turn` WHERE `turn`.`FK_story_id` = `story`.`id`)
+                                    ELSE
+                                        `story`.`started_at`
+                                END) AS turn_start,
+                                NOW() AS now_time
                             FROM 
                                 `story`  
-                            INNER JOIN `story_user` AS story_user
+                            INNER JOIN `story_user`
                                 ON `story_user`.`FK_story_id` = `story`.`id`
                             WHERE 
                                 `story`.`uri` = ?
@@ -197,7 +205,8 @@ class Main extends ST_Controller{
             Http::redirect('/Main/index');
             return;
         }
-
+        
+        $story['timeleft'] = $story['timelimit'] - (((new DateTime($story['now']))->getTimestamp() - (new DateTime($story['turn_start']))->getTimestamp()) / 1000);
 
         load_template('header', array('title' => 'New Story', 'user' => $user));
         load_view('GamePlay', $story);

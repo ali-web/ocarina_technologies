@@ -145,3 +145,41 @@ function showError(data){
         })($(this), increment, options.end, options.step);
     }
 })(jQuery);
+
+$.fn.timerElement = function(options) {
+    
+    if (typeof options !== 'object') options = {};
+    
+    var totalTime = (options && options.totalTime) || 0;
+    var startTime = new Date().getTime();
+    var time = totalTime;
+    var timeoutId = -1;
+    
+    var minusTimer = function(){
+        time = totalTime - Math.floor((new Date().getTime() - startTime) / 1000);
+        console.log(time);
+        
+        if (time <= 0) {
+            clearInterval(timeoutId);
+            timeoutId = -1;
+            
+            (typeof options.onDone === 'function') && options.onDone();
+        }
+        
+        var s = time;
+        var m = Math.floor(s / 60);
+        var h = Math.floor(m / 60);
+        
+        s = s % 60;
+        m = m % 60;
+        
+        this.text(
+            (((h < 10) ? "0" : "") + h) + ":"
+          + (((m < 10) ? "0" : "") + m) + ":"
+          + (((s < 10) ? "0" : "") + s)
+        );
+    }.bind(this);
+
+    timeoutId = setInterval(minusTimer, 1000);
+    minusTimer();
+};

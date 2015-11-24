@@ -41,7 +41,7 @@ CREATE TABLE `story` (
   `current_turn` int(11) NOT NULL DEFAULT '0',
   `time_limit` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,7 +61,7 @@ CREATE TABLE `story_user` (
   KEY `FK_story_id` (`FK_story_id`),
   CONSTRAINT `story_user_ibfk_1` FOREIGN KEY (`FK_user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `story_user_ibfk_2` FOREIGN KEY (`FK_story_id`) REFERENCES `story` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,7 +78,7 @@ CREATE TABLE `turn` (
   `timestamp` datetime NOT NULL,
   `words` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,8 +95,91 @@ CREATE TABLE `user` (
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `fb_id` (`fb_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping routines for database 'c9'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `MOVESTORIESFORWARD` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+CREATE DEFINER=`someone9999`@`%` PROCEDURE `MOVESTORIESFORWARD`()
+    NO SQL
+BEGIN
+
+DECLARE now DATETIME;
+DECLARE done INT;
+
+DECLARE v_id INT;
+DECLARE v_turns_over INT;
+DECLARE v_current_turn INT;
+DECLARE v_max_turns INT;
+
+DECLARE skip_turns INT;
+DECLARE should_end INT;
+
+DECLARE end_date DATETIME;
+
+DECLARE cur CURSOR FOR 
+ SELECT
+        t.`id`,
+        FLOOR(TIMESTAMPDIFF(SECOND, turn_start, NOW()) / t.`time_limit`) AS turns_over,
+        t.`current_turn` AS current_turn,
+        t.`max_turns` AS max_turns
+    FROM
+        (SELECT 
+            `story`.`id` AS id,
+            (CASE
+                WHEN `story`.`current_turn` > 0 THEN
+                    (SELECT MAX(`turn`.`timestamp`) FROM `turn` WHERE `turn`.`FK_story_id` = `story`.`id`)
+                ELSE
+                    `story`.`started_at`
+            END) AS turn_start,
+            `story`.`time_limit` as time_limit,
+            `story`.`current_turn` as current_turn,
+            `story`.`max_turns` as max_turns
+        FROM 
+            `story`) AS t
+    WHERE
+        TIMESTAMPDIFF(SECOND, turn_start, NOW()) >= t.`time_limit`;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+OPEN cur;
+
+SET done = 0;
+
+WHILE done = 0 DO
+	FETCH cur INTO v_id, v_turns_over, v_current_turn, v_max_turns;
+	IF done = 0 THEN
+		SET skip_turns = LEAST(v_max_turns, v_current_turn + v_turns_over) - v_current_turn;
+		SET v_current_turn = v_current_turn + skip_turns;
+		SET end_date = NULL;
+		IF v_current_turn = v_max_turns THEN
+			SET end_date = NOW();
+		END IF;
+		WHILE skip_turns > 0 DO
+			SET skip_turns = skip_turns - 1;
+			INSERT INTO `turn` (`words`, `FK_story_id`, `FK_user_id`, `timestamp`) VALUES ('', v_id, 0, NOW());
+		END WHILE;
+
+		UPDATE `story` SET `story`.`ended_at` = end_date, `story`.`current_turn` = v_current_turn WHERE `story`.`id` = v_id;
+		
+	END IF;
+END WHILE;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -107,4 +190,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-22 22:15:29
+-- Dump completed on 2015-11-24  7:37:34

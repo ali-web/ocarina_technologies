@@ -1,0 +1,64 @@
+CREATE DEFINER=`someone9999`@`%` PROCEDURE `MOVESTORIESFORWARD`()
+    NO SQL
+BEGIN
+
+DECLARE now DATETIME;
+DECLARE done INT;
+
+DECLARE v_id INT;
+DECLARE v_turns_over INT;
+DECLARE v_current_turn INT;
+DECLARE v_max_turns INT;
+
+DECLARE skip_turns INT;
+DECLARE should_end INT;
+
+DECLARE end_date DATETIME;
+
+DECLARE cur CURSOR FOR 
+ SELECT
+        t.`id`,
+        FLOOR(TIMESTAMPDIFF(SECOND, turn_start, NOW()) / t.`time_limit`) AS turns_over,
+        t.`current_turn` AS current_turn,
+        t.`max_turns` AS max_turns
+    FROM
+        (SELECT 
+            `story`.`id` AS id,
+            (CASE
+                WHEN `story`.`current_turn` > 0 THEN
+                    (SELECT MAX(`turn`.`timestamp`) FROM `turn` WHERE `turn`.`FK_story_id` = `story`.`id`)
+                ELSE
+                    `story`.`started_at`
+            END) AS turn_start,
+            `story`.`time_limit` as time_limit,
+            `story`.`current_turn` as current_turn,
+            `story`.`max_turns` as max_turns
+        FROM 
+            `story`) AS t
+    WHERE
+        TIMESTAMPDIFF(SECOND, turn_start, NOW()) >= t.`time_limit`;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+OPEN cur;
+
+SET done = 0;
+
+WHILE done = 0 DO
+	FETCH cur INTO v_id, v_turns_over, v_current_turn, v_max_turns;
+	IF done = 0 THEN
+		SET skip_turns = LEAST(v_max_turns, v_current_turn + v_turns_over) - v_current_turn;
+		SET v_current_turn = v_current_turn + skip_turns;
+		SET end_date = NULL;
+		IF v_current_turn = v_max_turns THEN
+			SET end_date = NOW();
+		END IF;
+		WHILE skip_turns > 0 DO
+			SET skip_turns = skip_turns - 1;
+			INSERT INTO `turn` (`words`, `FK_story_id`, `FK_user_id`, `timestamp`) VALUES ('', v_id, 0, NOW());
+		END WHILE;
+
+		UPDATE `story` SET `story`.`ended_at` = end_date, `story`.`current_turn` = v_current_turn WHERE `story`.`id` = v_id;
+		
+	END IF;
+END WHILE;
+
+END
