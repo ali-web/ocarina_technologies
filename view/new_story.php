@@ -24,3 +24,37 @@
     </tr>
 </table>
 </form>
+
+<input id="timer" type="text" value="<?= ST_TURN_TIME_LIMIT ?>" />
+
+<script type="application/javascript">
+    function minusTimer(){
+        var time = document.getElementById('timer').value;
+        time --;
+        document.getElementById('timer').value =  time;
+    }
+
+    var timer = new Timer({
+        tick : 1,
+        ontick : function (sec) {
+            console.log('interval', sec);
+        },
+        onstart : function() {
+            console.log('timer started');
+        }
+    });
+
+    timer.start(<?= ST_TURN_TIME_LIMIT ?>);
+    // defining options using on
+    timer.on('tick', function () {
+        minusTimer();
+    });
+
+
+    timer.on('end', function () {
+        minusTimer();
+        alert('your time limit finished');
+    });
+
+    //start timer for 10 seconds
+</script>

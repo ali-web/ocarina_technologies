@@ -11,6 +11,7 @@ class Main extends ST_Controller{
     function index() {
         $user = (new UserModel())->getLoggedInUser();
         
+        $this->db->rawQuery("CALL MOVESTORIESFORWARD()");
         
         $yourTurnStories = $this->db->rawQuery("
                                         SELECT * FROM story 
@@ -126,11 +127,33 @@ class Main extends ST_Controller{
     
     function waitTurn($uri) {
         $user = (new UserModel())->getLoggedInUser();
-        $stories = $this->db->rawQuery("SELECT * FROM `story` WHERE `story`.`uri` = ? LIMIT 1", array($uri));
+        
+        $this->db->rawQuery("CALL MOVESTORIESFORWARD()");
+        
+        $stories = $this->db->rawQuery('
+                            SELECT 
+                                *,
+                                (SELECT COUNT(*) FROM `story_user` WHERE `story_user`.`FK_story_id` = `story`.`id`) AS num_players,
+                                (CASE
+                                    WHEN `story`.`current_turn` > 0 THEN
+                                        (SELECT MAX(`turn`.`timestamp`) FROM `turn` WHERE `turn`.`FK_story_id` = `story`.`id`)
+                                    ELSE
+                                        `story`.`started_at`
+                                END) AS turn_start,
+                                NOW() AS now_time,
+                                (SELECT `story_user`.`turn_order` FROM `story_user` WHERE `story_user`.`FK_user_id` = ? AND `story_user`.`FK_story_id` = `story`.`id` LIMIT 1) AS turn_order
+                            FROM 
+                                `story`  
+                            WHERE 
+                                `story`.`uri` = ?
+                            LIMIT
+                                1', array($user['id'], $uri));
         $story = $stories[0];
         
+        $timeleft = $story['time_limit'] + (new DateTime($story['now_time']))->getTimestamp() - (new DateTime($story['turn_start']))->getTimestamp();
+        
         load_template('header', array('title' => 'Waiting for Turn', 'user' => $user));
-        load_view('WaitTurn', array('story' => $story));
+        load_view('WaitTurn', array('story' => $story, 'timeleft' => $timeleft, 'user' => $user));
         load_template('footer');
         
     }
@@ -144,16 +167,31 @@ class Main extends ST_Controller{
         load_view('CompletedStories', array('story' => $story));
         load_template('footer');
     }
+
+    function storyIDFromURI($uri)
+    {
+        $story = DBUtil::getOne($this->db->rawQuery('SELECT id FROM story WHERE uri = ?', array($uri)));
+        return $story['id'];
+    }
     
     function gamePlay($uri)
     {
         l("Gameplay called\n");
         $phrase = g('words'); 
         $user = (new UserModel())->getLoggedInUser();
+        $this->db->rawQuery("CALL MOVESTORIESFORWARD()");
         
         $story = DBUtil::getOne($this->db->rawQuery('   
                             SELECT 
-                                * 
+                                *,
+                                `story`.`id` AS id,
+                                (CASE
+                                    WHEN `story`.`current_turn` > 0 THEN
+                                        (SELECT MAX(`turn`.`timestamp`) FROM `turn` WHERE `turn`.`FK_story_id` = `story`.`id`)
+                                    ELSE
+                                        `story`.`started_at`
+                                END) AS turn_start,
+                                NOW() AS now_time
                             FROM 
                                 `story`  
                             INNER JOIN `story_user`
@@ -163,11 +201,14 @@ class Main extends ST_Controller{
                                 AND `story_user`.`FK_user_id` = ?
                                 AND `story_user`.`turn_order` = `story`.`current_turn` % 
                                                         (SELECT COUNT(*) FROM `story_user` WHERE `story_user`.`FK_story_id` = `story`.`id`)
+                                AND `story`.`ended_at` IS NULL
+                                                        
                     ', array($uri, $user['id'])));
+        
         
         if (!$story) {
             //Not this users turn.
-            Http::redirect('/Main/index');
+            Http::redirect('/Main/index'); 
         }
 
         if ($phrase){
@@ -179,6 +220,7 @@ class Main extends ST_Controller{
                 'timestamp' => $this->db->now()
             ));
             
+
             $phrase = " " . $phrase;
             if ($story['current_turn'] === $story['max_turns'] - 1) {
                 $this->db->rawQuery("UPDATE story SET body = CONCAT(body, ?), current_turn = current_turn + 1, ended_at = NOW() WHERE uri = ?", array($phrase, $uri));
@@ -186,10 +228,11 @@ class Main extends ST_Controller{
                 $this->db->rawQuery("UPDATE story SET body = CONCAT(body, ?), current_turn = current_turn + 1 WHERE uri = ?", array($phrase, $uri));
             }
             
-            Http::redirect('/Main/index');
+            Http::redirect('/Main/WaitTurn/' . $story['uri']);
             return;
         }
-
+        
+        $story['timeleft'] = $story['time_limit'] + (new DateTime($story['now_time']))->getTimestamp() - (new DateTime($story['turn_start']))->getTimestamp();
 
         load_template('header', array('title' => 'New Story', 'user' => $user));
         load_view('GamePlay', $story);
