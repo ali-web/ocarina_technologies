@@ -157,7 +157,6 @@ $.fn.timerElement = function(options) {
     
     var minusTimer = function(){
         time = totalTime - Math.floor((new Date().getTime() - startTime) / 1000);
-        console.log(time);
         
         if (time <= 0) {
             clearInterval(timeoutId);
