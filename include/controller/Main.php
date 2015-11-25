@@ -54,7 +54,7 @@ class Main extends ST_Controller{
         $uri = $_POST["game_uri"];
         require_once ST_MODEL_DIR . "UserModel.php";
         $user = (new UserModel())->getLoggedInuser();
-
+    
         if (!$user) {
             Http::redirect('/User/index');
         }

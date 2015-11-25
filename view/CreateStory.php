@@ -59,10 +59,22 @@ function addInput(divName){
 </form>
 
 <script>
+    var count = 3;
     $('#regen').on('click', function() {
-        $.get("/Title/regen/", {rt: "ajax"}, function(data) {
-            $("#StoryTitle").text(data);
-            $("#game_title_input").attr('value', data);
-        });
+        count--;
+        console.log(count);
+        if(count>=0) {
+            $.get("/Title/regen/", {rt: "ajax"}, function(data) {
+                if(count == 1) {
+                    var regens_left = "(1 more regenerate)";
+                } else if(count == 0) {
+                    var regens_left = "(no more regenerations)";
+                } else {
+                    var regens_left = "(" + count + " more regenerates)";
+                }
+                $("#StoryTitle").text(data + "\n" + regens_left);
+                $("#game_title_input").attr('value', data);
+            });
+        }
     });
 </script>

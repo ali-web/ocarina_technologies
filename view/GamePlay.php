@@ -4,7 +4,7 @@
 
 <form id="add_words" name="add_words" method="post">
     Enter <b>4</b> words:<br>
-    <input type="text" name="words">
+    <textarea rows="2" cols="20" name="words" onkeyup="checkWordLen(this);"></textarea>
     <input type="submit" value="Add words"> 
 </form>
 
@@ -15,5 +15,18 @@
     $("#timeleft").timerElement({totalTime: <?php echo $timeleft; ?>, onDone: function() {
         window.location = "/Main/WaitTurn/<?php echo $uri; ?>";
     }});
+    
+
+var wordLen = 4; // Maximum word length
+function checkWordLen(obj){
+    var len = obj.value.split(/[\s]+/);
+    if(len.length > wordLen){
+    	alert("You've exceeded the "+wordLen+" word limit for the story!");
+    	obj.oldValue = obj.value!=obj.oldValue?obj.value:obj.oldValue;
+    	obj.value = obj.oldValue?obj.oldValue:"";
+        return false;
+    }
+        return true;
+}
 </script>
 
