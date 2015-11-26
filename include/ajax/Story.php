@@ -4,7 +4,6 @@ function storyInfo() {
     $uri = g('uri');
     $userId = g('userId');
     
-    l("uri is $uri and user id is $userId\n");
     st_db_object()->rawQuery("CALL MOVESTORIESFORWARD()");
     
     $db_data = st_db_object()->rawQuery("
@@ -26,7 +25,6 @@ function storyInfo() {
                                 `story`.`uri` = ?
                                 ", array($userId, $uri));
     
-    l(print_r($db_data, true), " \n");
     
     echo json_encode($db_data[0]);
     

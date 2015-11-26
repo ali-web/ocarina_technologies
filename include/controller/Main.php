@@ -150,7 +150,7 @@ class Main extends ST_Controller{
                                 1', array($user['id'], $uri));
         $story = $stories[0];
         
-        $timeleft = $story['time_limit'] + (new DateTime($story['now_time']))->getTimestamp() - (new DateTime($story['turn_start']))->getTimestamp();
+        $timeleft = $story['time_limit'] - (new DateTime($story['now_time']))->getTimestamp() + (new DateTime($story['turn_start']))->getTimestamp();
         
         load_template('header', array('title' => 'Waiting for Turn', 'user' => $user));
         load_view('WaitTurn', array('story' => $story, 'timeleft' => $timeleft, 'user' => $user));
@@ -232,7 +232,7 @@ class Main extends ST_Controller{
             return;
         }
         
-        $story['timeleft'] = $story['time_limit'] + (new DateTime($story['now_time']))->getTimestamp() - (new DateTime($story['turn_start']))->getTimestamp();
+        $story['timeleft'] = $story['time_limit'] - (new DateTime($story['now_time']))->getTimestamp() + (new DateTime($story['turn_start']))->getTimestamp();
 
         load_template('header', array('title' => 'New Story', 'user' => $user));
         load_view('GamePlay', $story);

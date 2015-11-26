@@ -22,8 +22,7 @@ function checkWordLen(obj){
     var len = obj.value.split(/[\s]+/);
     if(len.length > wordLen){
     	alert("You've exceeded the "+wordLen+" word limit for the story!");
-    	obj.oldValue = obj.value!=obj.oldValue?obj.value:obj.oldValue;
-    	obj.value = obj.oldValue?obj.oldValue:"";
+    	$(obj).val(len.slice(0,4).join(" "));
         return false;
     }
         return true;
