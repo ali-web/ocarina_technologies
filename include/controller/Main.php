@@ -66,7 +66,7 @@ class Main extends ST_Controller{
             'title' => $_POST["game_title"],
             'body'=> '',
             'max_turns' => $_POST["numturns"] * (count($invited_friends) + 1),
-            'time_limit' => 1000,
+            'time_limit' => 86400,
             'started_at' => $this->db->now()
         );
         $storyId = $this->db->insert('story', $story);
