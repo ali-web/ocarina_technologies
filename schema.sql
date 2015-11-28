@@ -93,6 +93,7 @@ CREATE TABLE `user` (
   `fb_id` varchar(20) NOT NULL COMMENT 'facebook currently stores these as a 64bit unsigned int',
   `access_token` varchar(255) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `fb_id` (`fb_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;

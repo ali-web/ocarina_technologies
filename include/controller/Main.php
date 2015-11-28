@@ -151,20 +151,8 @@ class Main extends ST_Controller{
                                 1', array($user['id'], $uri));
         $story = $stories[0];
 
-        //to figure out whose turn is it
-        $currentStory = $this->db->rawQuery("
-                                        SELECT name AS current_user_name FROM user
-                                        INNER JOIN
-                                            story_user ON user.id=story_user.FK_user_id
-                                        INNER JOIN
-                                            story ON story_user.FK_story_id=story.id
-                                        WHERE
-                                            ended_at IS NULL
-                                            AND story.uri = ?
-                                            AND story_user.turn_order = story.current_turn %
-                                                                        (SELECT COUNT(*) FROM story_user WHERE story_user.FK_story_id = story.id)
-                                       ", array($uri));
-        $story['current_user_name'] = $currentStory[0]['current_user_name'];
+        $nextPlayer = $this->_nextPlayer($uri);
+        $story['current_user_name'] = $nextPlayer['name'];
 
 
         $timeleft = $story['time_limit'] - (new DateTime($story['now_time']))->getTimestamp() + (new DateTime($story['turn_start']))->getTimestamp();
@@ -245,6 +233,16 @@ class Main extends ST_Controller{
                 $this->db->rawQuery("UPDATE story SET body = CONCAT(body, ?), current_turn = current_turn + 1 WHERE uri = ?", array($phrase, $uri));
             }
 
+
+            //send notification to next player
+            $nextPlayer = $this->_nextPlayer($uri);
+
+            if ($nextPlayer['email']){
+                $message = "Hi " . $nextPlayer['name'] . ",\n It's your turn to put your own words to the story.\nThanks!";
+                mail($nextPlayer['email'], "Now it's your turn to play", $message);
+            }
+
+
             Http::redirect('/Main/WaitTurn/' . $story['uri']);
             return;
         }
@@ -255,6 +253,24 @@ class Main extends ST_Controller{
         load_view('GamePlay', $story);
         load_template('footer');
     }
-}
 
-?>
+
+    function _nextPlayer($uri)
+    {
+        //to figure out whose turn is it
+        $nextPlayer = $this->db->rawQuery("
+                                        SELECT name,email FROM user
+                                        INNER JOIN
+                                            story_user ON user.id=story_user.FK_user_id
+                                        INNER JOIN
+                                            story ON story_user.FK_story_id=story.id
+                                        WHERE
+                                            ended_at IS NULL
+                                            AND story.uri = ?
+                                            AND story_user.turn_order = story.current_turn %
+                                                                        (SELECT COUNT(*) FROM story_user WHERE story_user.FK_story_id = story.id)
+                                       ", array($uri));
+
+        return $nextPlayer[0];
+    }
+}
