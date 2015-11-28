@@ -3,32 +3,30 @@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 <script>
-$(function() {
-    $( "#friends_search" ).autocomplete({
-        source: '/AutoComplete/complete/'
+    $(function() {
+        $( "#friends_search" ).autocomplete({
+            source: '/AutoComplete/complete/'
+        });
     });
-});
+    var counter = 1;
+    var limit = 10;
+    function addInput(divName){
+        if (counter == limit)  {
+            alert("You have reached the limit of adding " + counter + " inputs");
+        }
+        else {
+            var newdiv = document.createElement('div');
+            newdiv.innerHTML = "<br><input id='friends_search" + counter + "' type='text' name='myFriends[]' class='ui-autocomplete-input' autocomplete='off'>";
+            document.getElementById(divName).appendChild(newdiv);
 
-var counter = 1;
-var limit = 10;
-function addInput(divName){
-     if (counter == limit)  {
-          alert("You have reached the limit of adding " + counter + " inputs");
-     }
-     else {
-          var newdiv = document.createElement('div');
-          newdiv.innerHTML = "<br><input id='friends_search" + counter + "' type='text' name='myFriends[]' class='ui-autocomplete-input' autocomplete='off'>";
-          document.getElementById(divName).appendChild(newdiv);
-          
-          $("#friends_search" + counter).autocomplete({
-              source: '/AutoComplete/complete/'
-          });
-          
-          
-          counter++;
-     }
-}
+            $("#friends_search" + counter).autocomplete({
+                source: '/AutoComplete/complete/'
+            });
 
+
+            counter++;
+        }
+    }
 </script>
 
 
@@ -44,14 +42,16 @@ function addInput(divName){
     <div id="friends_list_div" class="list">
         <h2>Invite Friends:</h2>
         <div id="dynamicInput">
-        <input id="friends_search" type="text" name="myFriends[]">
+            <input id="friends_search" type="text" name="myFriends[]">
         </div>
         <input type="button" value="Add another friend" onClick="addInput('dynamicInput');">
     </div>
-    
+
     <div id="Settings" class="list">
         <h2>Turns per person:</h2>
         <input type="text" name="numturns">
+        <h2>Time Limit per turn in hours:</h2>
+        <input type="text" name="numhours">
     </div>
     <input type="hidden" name="game_uri" value="<?php echo $uri;?>">
     <input id="game_title_input" type="hidden" name="game_title" value="<?php echo $title;?>">
