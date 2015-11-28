@@ -7,11 +7,10 @@ $fbClientId = getenv("FB_CLIENT_ID");
 $fbSecretId = getenv("FB_SECRET_ID");
 $fbAccessToken = getenv("FB_ACCESS_TOKEN");
 
-/*
+
 $fbClientId = "616373461835997";
-$fbSecretId = "2ce2fb48bbc2991b89a7750541d980f5";
+$fbSecretId = "1394fe305000f61d557d8efb2aa47e5a";
 $fbAccessToken = "0c18e5413201d15783f711858c855001";
-*/
 
 if ($cloud9User) {
     define('ST_MYSQL_HOSTNAME', getenv('IP'));

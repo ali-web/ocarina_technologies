@@ -52,6 +52,8 @@ function addInput(divName){
     <div id="Settings" class="list">
         <h2>Turns per person:</h2>
         <input type="text" name="numturns">
+        <h2>Time Limit per turn in hours:</h2>
+        <input type="text" name="numhours">
     </div>
     <input type="hidden" name="game_uri" value="<?php echo $uri;?>">
     <input id="game_title_input" type="hidden" name="game_title" value="<?php echo $title;?>">

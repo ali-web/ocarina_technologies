@@ -66,7 +66,8 @@ class Main extends ST_Controller{
             'title' => $_POST["game_title"],
             'body'=> '',
             'max_turns' => $_POST["numturns"] * (count($invited_friends) + 1),
-            'time_limit' => 86400,
+            //'time_limit' => 86400,
+            'time_limit' => max(intval(g("numhours")), 1) * 3600,
             'started_at' => $this->db->now()
         );
         $storyId = $this->db->insert('story', $story);
@@ -78,7 +79,7 @@ class Main extends ST_Controller{
             $userIds = array();
             foreach($invited_friends as $person) {
                 $userId = $this->db->rawQuery('SELECT * FROM user WHERE name = ?', array($person));
-                $userIds[] = $userId[0]['id'];
+                $userIds[] = @$userId[0]['id'];
             }
             
             shuffle($userIds);
@@ -149,6 +150,22 @@ class Main extends ST_Controller{
                             LIMIT
                                 1', array($user['id'], $uri));
         $story = $stories[0];
+
+        //to figure out whose turn is it
+        $currentStory = $this->db->rawQuery("
+                                        SELECT name AS current_user_name FROM user
+                                        INNER JOIN
+                                            story_user ON user.id=story_user.FK_user_id
+                                        INNER JOIN
+                                            story ON story_user.FK_story_id=story.id
+                                        WHERE
+                                            ended_at IS NULL
+                                            AND story.uri = ?
+                                            AND story_user.turn_order = story.current_turn %
+                                                                        (SELECT COUNT(*) FROM story_user WHERE story_user.FK_story_id = story.id)
+                                       ", array($uri));
+        $story['current_user_name'] = $currentStory[0]['current_user_name'];
+
         
         $timeleft = $story['time_limit'] - (new DateTime($story['now_time']))->getTimestamp() + (new DateTime($story['turn_start']))->getTimestamp();
         

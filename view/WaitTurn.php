@@ -1,7 +1,7 @@
 <div class="margin-break"></div>
 <div class="story-title"><h2><?= $story['title'] ?></h2></div>
 <div class="story-body"><?= $story['body'] ?></div>
-<div class="story-state">Waiting On Your Turn...</div>
+<div class="story-state">Waiting for <?= $story['current_user_name'] ?> to play ...</div>
 <div class="story-body">Turn <?= $story['current_turn'] + 1 ?> of <?= $story['max_turns'] ?></div>
 <div class="story-body">Timeleft on current turn - <span id="timeleft"></span></div>
 
@@ -10,7 +10,7 @@
         checkForUpdate();
     }});
     
-    var updateTime = 5000;
+    var updateTime = 500;
     var turnOrder = <?= $story['turn_order'] ?>;
     var currentTurn = <?= $story['current_turn'] ?>;
     var uri = '<?= $story['uri'] ?>';
