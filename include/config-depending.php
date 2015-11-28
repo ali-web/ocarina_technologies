@@ -8,9 +8,9 @@ $fbSecretId = getenv("FB_SECRET_ID");
 $fbAccessToken = getenv("FB_ACCESS_TOKEN");
 
 /*
-$fbClientId = "616373461835997";
-$fbSecretId = "2ce2fb48bbc2991b89a7750541d980f5";
-$fbAccessToken = "0c18e5413201d15783f711858c855001";
+$fbClientId = "your id";
+$fbSecretId = "your secred id";
+$fbAccessToken = "your access token";
 */
 
 if ($cloud9User) {
