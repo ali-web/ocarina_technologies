@@ -168,7 +168,7 @@ class Main extends ST_Controller{
         $stories = $this->db->rawQuery("SELECT * FROM `story` WHERE `story`.`uri` = ? LIMIT 1", array($uri));
         $story = $stories[0];
 
-        load_template('header', array('title' => 'Waiting for Turn', 'user' => $user));
+        load_template('header', array('title' => 'Completed Story', 'user' => $user));
         load_view('CompletedStories', array('story' => $story));
         load_template('footer');
     }
